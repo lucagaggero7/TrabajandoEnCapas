@@ -12,8 +12,9 @@ namespace Datos
     {
         public OleDbConnection conexion;
   
-        public string cadenaConexion = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\stefano luca\Desktop\Stefano\ITSC 2°AÑO\Programacion II\Bases de Datos Access OLEDB\ProfesionalesBD.accdb;";
+        public string cadenaConexion = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\stefano luca\Desktop\Stefano\ITSC 2°AÑO\Programacion II\Bases de Datos Access OLEDB\TiendaOnlineBD.accdb;Persist Security Info=True";
 
+                                        //Provider=Microsoft.ACE.OLEDB.12.0;Data Source="C:\Users\stefano luca\Desktop\Stefano\ITSC 2°AÑO\Programacion II\Bases de Datos Access OLEDB\ProfesionalesBD.accdb";Persist Security Info=True
         public DatosConexionBD()
         {
             conexion = new OleDbConnection(cadenaConexion);
