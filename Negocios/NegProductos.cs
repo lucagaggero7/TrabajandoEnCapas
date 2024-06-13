@@ -28,9 +28,9 @@ namespace Negocios
             return objDatosProductos.BuscarProducto(objProfesional);
         }
 
-        public DataTable BuscarFiltros(string columna)
+        public DataTable BuscarFiltros()
         {
-            return objDatosProductos.BuscarFiltros(columna);
+            return objDatosProductos.BuscarFiltros();
         }
 
     }

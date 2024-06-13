@@ -117,25 +117,13 @@ namespace Datos
             return dt;
         }
 
-        public DataTable BuscarFiltros(string columna)
+        public DataTable BuscarFiltros()
         {
             DataTable dataTableFiltro = new DataTable();
             string orden = string.Empty;
 
-            if(columna == "Marca")
-            {
-                orden = "SELECT DISTINCT Marca FROM Productos";
-            }
+            orden = "SELECT p.Categoria, p.Marca, p.Precio\r\nFROM Productos AS p\r\nINNER JOIN (\r\n    SELECT DISTINCT Categoria, Marca, Precio\r\n    FROM Productos\r\n) AS subconsulta\r\nON p.Categoria = subconsulta.Categoria\r\n    AND p.Marca = subconsulta.Marca\r\n    AND p.Precio = subconsulta.Precio;";
 
-            if (columna == "Categoria")
-            {
-                orden = "SELECT DISTINCT Categoria FROM Productos";
-            }
-
-            if (columna == "Precio")
-            {
-                orden = "SELECT DISTINCT Precio FROM Productos";
-            }
 
             OleDbCommand cmd = new OleDbCommand(orden, conexion);
             OleDbDataAdapter da = new OleDbDataAdapter();
@@ -148,34 +136,17 @@ namespace Datos
                 da.Fill(dataTableFiltro);
                 foreach (DataRow row in dataTableFiltro.Rows)
                 {
-                    string marca = row[columna].ToString();
+                    string renglon = row.ToString();
                 }
             }
             catch (Exception e)
             {
-                throw new Exception("Error al buscar filtros marcas", e);
+                throw new Exception("Error al buscar filtros", e);
             }
             finally
             {
                 Cerrarconexion();
                 cmd.Dispose();
-            }
-
-            if (columna == "Marca")
-            {
-                return dataTableFiltro;
-            }
-            
-
-            if (columna == "Categoria")
-            {
-                return dataTableFiltro;
-            }
-            
-
-            if (columna == "Precio")
-            {
-                return dataTableFiltro;
             }
 
             return dataTableFiltro;

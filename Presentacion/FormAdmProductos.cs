@@ -9,12 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
+using INNOBRA_FE;
 using Negocios;
 
 
 namespace Presentacion
 {
-    public partial class FormAdmProductos : Form
+    public partial class FormAdmProductos : FrmBase
     {
         public Producto objEntProducto = new Producto();
 
@@ -41,13 +42,11 @@ namespace Presentacion
             //datagridProductos.Columns[4].Width = 60;
             //datagridProductos.Columns[5].Width = 60;
             LlenarDataGrid();
-
-            datagridProductos.ClearSelection();
         }
 
         private void FormAdmProductos_Load(object sender, EventArgs e)
         {
-
+            datagridProductos.ClearSelection();
         }
 
         private void LlenarDataGrid()

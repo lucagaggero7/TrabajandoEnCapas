@@ -1,4 +1,5 @@
-﻿using System;
+﻿using INNOBRA_FE;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Presentacion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormUsuario());
+            Application.Run(new Login());
         }
     }
 }

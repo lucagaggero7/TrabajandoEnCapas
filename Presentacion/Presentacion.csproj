@@ -58,6 +58,18 @@
     <Compile Include="FormUsuario.Designer.cs">
       <DependentUpon>FormUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBase.Designer.cs">
+      <DependentUpon>FrmBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAdmProductos.resx">
@@ -65,6 +77,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuario.resx">
       <DependentUpon>FormUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBase.resx">
+      <DependentUpon>FrmBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

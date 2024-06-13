@@ -30,8 +30,8 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnCargar = new System.Windows.Forms.Button();
             this.lblCodigo = new System.Windows.Forms.Label();
@@ -49,19 +49,38 @@ namespace Presentacion
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.lblMarca = new System.Windows.Forms.Label();
             this.txtMarca = new System.Windows.Forms.TextBox();
+            this.PanelBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.btnCerrar.Location = new System.Drawing.Point(871, 0);
+            // 
+            // PanelBarraTitulo
+            // 
+            this.PanelBarraTitulo.Size = new System.Drawing.Size(913, 34);
+            // 
+            // btnMinimizar
+            // 
+            this.btnMinimizar.FlatAppearance.BorderSize = 0;
+            this.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.btnMinimizar.Location = new System.Drawing.Point(829, 0);
+            // 
             // txtCodigo
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(98, 53);
+            this.txtCodigo.Location = new System.Drawing.Point(88, 113);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(100, 20);
             this.txtCodigo.TabIndex = 0;
             // 
             // btnCargar
             // 
-            this.btnCargar.Location = new System.Drawing.Point(98, 229);
+            this.btnCargar.Location = new System.Drawing.Point(88, 289);
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(80, 27);
             this.btnCargar.TabIndex = 1;
@@ -72,7 +91,7 @@ namespace Presentacion
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(38, 60);
+            this.lblCodigo.Location = new System.Drawing.Point(28, 120);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(40, 13);
             this.lblCodigo.TabIndex = 2;
@@ -84,47 +103,48 @@ namespace Presentacion
             this.datagridProductos.AllowUserToDeleteRows = false;
             this.datagridProductos.AllowUserToResizeColumns = false;
             this.datagridProductos.AllowUserToResizeRows = false;
+            this.datagridProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.datagridProductos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.datagridProductos.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.datagridProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.datagridProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.datagridProductos.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.datagridProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.NullValue = "null";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.datagridProductos.ColumnHeadersHeight = 30;
-            this.datagridProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridProductos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.NullValue = "null";
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.datagridProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridProductos.DefaultCellStyle = dataGridViewCellStyle4;
             this.datagridProductos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.datagridProductos.EnableHeadersVisualStyles = false;
             this.datagridProductos.GridColor = System.Drawing.Color.DarkGray;
-            this.datagridProductos.Location = new System.Drawing.Point(426, 53);
+            this.datagridProductos.Location = new System.Drawing.Point(416, 113);
             this.datagridProductos.MaximumSize = new System.Drawing.Size(9999, 9999);
             this.datagridProductos.MultiSelect = false;
             this.datagridProductos.Name = "datagridProductos";
             this.datagridProductos.ReadOnly = true;
             this.datagridProductos.RowHeadersVisible = false;
-            this.datagridProductos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.datagridProductos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.datagridProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datagridProductos.Size = new System.Drawing.Size(455, 230);
             this.datagridProductos.TabIndex = 38;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(98, 86);
+            this.txtNombre.Location = new System.Drawing.Point(88, 146);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 4;
@@ -132,7 +152,7 @@ namespace Presentacion
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(38, 89);
+            this.lblNombre.Location = new System.Drawing.Point(28, 149);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(44, 13);
             this.lblNombre.TabIndex = 6;
@@ -141,14 +161,14 @@ namespace Presentacion
             // lblMensaje
             // 
             this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Location = new System.Drawing.Point(108, 317);
+            this.lblMensaje.Location = new System.Drawing.Point(98, 377);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(0, 13);
             this.lblMensaje.TabIndex = 7;
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(270, 229);
+            this.btnBorrar.Location = new System.Drawing.Point(260, 289);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(80, 27);
             this.btnBorrar.TabIndex = 8;
@@ -158,7 +178,7 @@ namespace Presentacion
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(184, 229);
+            this.btnBuscar.Location = new System.Drawing.Point(174, 289);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(80, 27);
             this.btnBuscar.TabIndex = 9;
@@ -169,7 +189,7 @@ namespace Presentacion
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(229, 121);
+            this.lblStock.Location = new System.Drawing.Point(219, 181);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(35, 13);
             this.lblStock.TabIndex = 11;
@@ -177,7 +197,7 @@ namespace Presentacion
             // 
             // txtStock
             // 
-            this.txtStock.Location = new System.Drawing.Point(287, 118);
+            this.txtStock.Location = new System.Drawing.Point(277, 178);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(100, 20);
             this.txtStock.TabIndex = 10;
@@ -185,7 +205,7 @@ namespace Presentacion
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(227, 60);
+            this.lblCategoria.Location = new System.Drawing.Point(217, 120);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 13;
@@ -193,7 +213,7 @@ namespace Presentacion
             // 
             // txtCategoria
             // 
-            this.txtCategoria.Location = new System.Drawing.Point(287, 53);
+            this.txtCategoria.Location = new System.Drawing.Point(277, 113);
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(100, 20);
             this.txtCategoria.TabIndex = 12;
@@ -201,7 +221,7 @@ namespace Presentacion
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(227, 89);
+            this.lblPrecio.Location = new System.Drawing.Point(217, 149);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(37, 13);
             this.lblPrecio.TabIndex = 15;
@@ -209,7 +229,7 @@ namespace Presentacion
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(287, 86);
+            this.txtPrecio.Location = new System.Drawing.Point(277, 146);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(100, 20);
             this.txtPrecio.TabIndex = 14;
@@ -217,7 +237,7 @@ namespace Presentacion
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(38, 121);
+            this.lblMarca.Location = new System.Drawing.Point(28, 181);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(37, 13);
             this.lblMarca.TabIndex = 17;
@@ -225,7 +245,7 @@ namespace Presentacion
             // 
             // txtMarca
             // 
-            this.txtMarca.Location = new System.Drawing.Point(98, 118);
+            this.txtMarca.Location = new System.Drawing.Point(88, 178);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(100, 20);
             this.txtMarca.TabIndex = 16;
@@ -234,7 +254,7 @@ namespace Presentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 362);
+            this.ClientSize = new System.Drawing.Size(913, 406);
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.lblPrecio);
@@ -253,8 +273,28 @@ namespace Presentacion
             this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.txtCodigo);
             this.Name = "FormAdmProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdmProductos";
             this.Load += new System.EventHandler(this.FormAdmProductos_Load);
+            this.Controls.SetChildIndex(this.txtCodigo, 0);
+            this.Controls.SetChildIndex(this.btnCargar, 0);
+            this.Controls.SetChildIndex(this.lblCodigo, 0);
+            this.Controls.SetChildIndex(this.datagridProductos, 0);
+            this.Controls.SetChildIndex(this.txtNombre, 0);
+            this.Controls.SetChildIndex(this.lblNombre, 0);
+            this.Controls.SetChildIndex(this.lblMensaje, 0);
+            this.Controls.SetChildIndex(this.btnBorrar, 0);
+            this.Controls.SetChildIndex(this.btnBuscar, 0);
+            this.Controls.SetChildIndex(this.txtStock, 0);
+            this.Controls.SetChildIndex(this.lblStock, 0);
+            this.Controls.SetChildIndex(this.txtCategoria, 0);
+            this.Controls.SetChildIndex(this.lblCategoria, 0);
+            this.Controls.SetChildIndex(this.txtPrecio, 0);
+            this.Controls.SetChildIndex(this.lblPrecio, 0);
+            this.Controls.SetChildIndex(this.txtMarca, 0);
+            this.Controls.SetChildIndex(this.lblMarca, 0);
+            this.Controls.SetChildIndex(this.PanelBarraTitulo, 0);
+            this.PanelBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
