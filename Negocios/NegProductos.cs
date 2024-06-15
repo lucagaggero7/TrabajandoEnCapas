@@ -23,6 +23,12 @@ namespace Negocios
             return objDatosProductos.listadoProductos(cual);
         }
 
+        public DataTable listadoProductosUserV(string cual)
+        {
+            return objDatosProductos.listadoProductosUserV(cual);
+        }
+
+
         public object BuscarProducto(Producto objProfesional)
         {
             return objDatosProductos.BuscarProducto(objProfesional);

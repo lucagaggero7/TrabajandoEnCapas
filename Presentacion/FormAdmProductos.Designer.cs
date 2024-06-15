@@ -49,6 +49,7 @@ namespace Presentacion
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.lblMarca = new System.Windows.Forms.Label();
             this.txtMarca = new System.Windows.Forms.TextBox();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.PanelBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).BeginInit();
             this.SuspendLayout();
@@ -250,11 +251,23 @@ namespace Presentacion
             this.txtMarca.Size = new System.Drawing.Size(100, 20);
             this.txtMarca.TabIndex = 16;
             // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Open Sans SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSesion.Location = new System.Drawing.Point(763, 40);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(108, 33);
+            this.btnCerrarSesion.TabIndex = 53;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
             // FormAdmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 406);
+            this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.lblPrecio);
@@ -294,6 +307,7 @@ namespace Presentacion
             this.Controls.SetChildIndex(this.txtMarca, 0);
             this.Controls.SetChildIndex(this.lblMarca, 0);
             this.Controls.SetChildIndex(this.PanelBarraTitulo, 0);
+            this.Controls.SetChildIndex(this.btnCerrarSesion, 0);
             this.PanelBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).EndInit();
             this.ResumeLayout(false);
@@ -320,5 +334,6 @@ namespace Presentacion
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.TextBox txtMarca;
+        private Button btnCerrarSesion;
     }
 }

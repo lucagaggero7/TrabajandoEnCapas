@@ -2,7 +2,7 @@
 
 namespace Presentacion
 {
-    partial class FormUsuario
+    partial class FormUsuarioWIP
     {
         /// <summary>
         /// Required designer variable.
@@ -31,8 +31,8 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.datagridProductosUser = new System.Windows.Forms.DataGridView();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -78,24 +78,24 @@ namespace Presentacion
             this.datagridProductosUser.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.datagridProductosUser.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.datagridProductosUser.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.NullValue = "null";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridProductosUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.NullValue = "null";
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridProductosUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.datagridProductosUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridProductosUser.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridProductosUser.DefaultCellStyle = dataGridViewCellStyle4;
             this.datagridProductosUser.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.datagridProductosUser.EnableHeadersVisualStyles = false;
             this.datagridProductosUser.GridColor = System.Drawing.Color.DarkGray;
@@ -170,8 +170,9 @@ namespace Presentacion
             this.listPrecios.CheckOnClick = true;
             this.listPrecios.FormattingEnabled = true;
             this.listPrecios.Location = new System.Drawing.Point(3, 227);
+            this.listPrecios.MaximumSize = new System.Drawing.Size(119, 64);
             this.listPrecios.Name = "listPrecios";
-            this.listPrecios.Size = new System.Drawing.Size(119, 64);
+            this.listPrecios.Size = new System.Drawing.Size(119, 4);
             this.listPrecios.TabIndex = 51;
             this.listPrecios.Visible = false;
             this.listPrecios.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listPrecios_ItemCheck);
@@ -192,9 +193,11 @@ namespace Presentacion
             // 
             this.listMarcas.CheckOnClick = true;
             this.listMarcas.FormattingEnabled = true;
+            this.listMarcas.IntegralHeight = false;
             this.listMarcas.Location = new System.Drawing.Point(3, 126);
+            this.listMarcas.MaximumSize = new System.Drawing.Size(119, 64);
             this.listMarcas.Name = "listMarcas";
-            this.listMarcas.Size = new System.Drawing.Size(119, 64);
+            this.listMarcas.Size = new System.Drawing.Size(119, 0);
             this.listMarcas.TabIndex = 49;
             this.listMarcas.Visible = false;
             this.listMarcas.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listMarcas_ItemCheck);
@@ -216,8 +219,9 @@ namespace Presentacion
             this.listCategorias.CheckOnClick = true;
             this.listCategorias.FormattingEnabled = true;
             this.listCategorias.Location = new System.Drawing.Point(3, 29);
+            this.listCategorias.MaximumSize = new System.Drawing.Size(119, 64);
             this.listCategorias.Name = "listCategorias";
-            this.listCategorias.Size = new System.Drawing.Size(119, 64);
+            this.listCategorias.Size = new System.Drawing.Size(119, 4);
             this.listCategorias.TabIndex = 48;
             this.listCategorias.Visible = false;
             this.listCategorias.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listCategorias_ItemCheck);

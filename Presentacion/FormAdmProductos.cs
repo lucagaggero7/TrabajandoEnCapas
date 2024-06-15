@@ -162,5 +162,11 @@ namespace Presentacion
 
             }
         }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Oculta el formulario actual
+            Owner.Show(); // Muestra el formulario padre
+        }
     }
 }

@@ -77,7 +77,7 @@ namespace INNOBRA_FE
             }
             if (txtNombredeusuario.Text == "usuario" && txtContraseña.Text == "1234")
             {
-                FormUsuario frm3 = new FormUsuario();
+                FormUsuarioBasic frm3 = new FormUsuarioBasic();
                 this.AddOwnedForm(frm3);
 
                 frm3.Show();
@@ -185,7 +185,7 @@ namespace INNOBRA_FE
             if (txtNombredeusuario.Text == "")
             {
                 txtNombredeusuario.Text = "Nombre de usuario";
-                txtNombredeusuario.ForeColor = Color.LightGray;
+                txtNombredeusuario.ForeColor = Color.DarkGray;
             }
         }
 
@@ -194,7 +194,7 @@ namespace INNOBRA_FE
             if (txtContraseña.Text == "")
             {
                 txtContraseña.Text = "Contraseña";
-                txtContraseña.ForeColor = Color.LightGray;
+                txtContraseña.ForeColor = Color.DarkGray;
                 txtContraseña.PasswordChar = '\0';
             }
         }
