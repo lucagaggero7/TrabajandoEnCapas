@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace INNOBRA_FE
+
+namespace Presentacion
 {
     //NO BORRAR
     //Este es el formulario plantilla el cual contiene bordes customizados

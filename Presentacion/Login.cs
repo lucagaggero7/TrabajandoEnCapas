@@ -10,13 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using INNOBRA_FE;
 using Microsoft.Win32;
-using Presentacion;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 
-namespace INNOBRA_FE
+namespace Presentacion
 {
     public partial class Login : FrmBase
     {

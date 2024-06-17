@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace INNOBRA_FE
+namespace Presentacion
 {
     partial class FrmBase
     {

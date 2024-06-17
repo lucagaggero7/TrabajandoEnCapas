@@ -52,6 +52,12 @@
     <Compile Include="FormAdmProductos.Designer.cs">
       <DependentUpon>FormAdmProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCarrito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCarrito.Designer.cs">
+      <DependentUpon>FormCarrito.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUsuarioBasic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAdmProductos.resx">
       <DependentUpon>FormAdmProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCarrito.resx">
+      <DependentUpon>FormCarrito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuarioBasic.resx">
       <DependentUpon>FormUsuarioBasic.cs</DependentUpon>

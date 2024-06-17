@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace INNOBRA_FE
+namespace Presentacion
 {
     public partial class Login
     {

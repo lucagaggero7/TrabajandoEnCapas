@@ -1,5 +1,4 @@
 ﻿using Entidades;
-using INNOBRA_FE;
 using Negocios;
 using System;
 using System.Collections.Generic;
@@ -22,11 +21,17 @@ namespace Presentacion
 
         public NegProductos objNegProductos = new NegProductos();
 
+        private Carrito carrito;
+
         //variables que cuentan los clicks de los textbox 
         int categoriaclick = 0;
         int marcaclick = 0;
         int preciominclick = 0;
         int preciomaxclick = 0;
+
+        long Valorverif;
+        long Verificacion;
+
 
         public FormUsuarioBasic()
         {
@@ -49,6 +54,10 @@ namespace Presentacion
             //datagridProductosUser.Columns[5].Width = 60;
             
             LlenarDataGrid();
+
+            carrito = new Carrito();
+
+            carrito.ClonarEstructura((DataTable)datagridProductosUser.DataSource);
         }
    
 
@@ -71,10 +80,6 @@ namespace Presentacion
             //    MessageBox.Show("No hay profesionales cargados en el sistema");
         }
 
-        private void btnFiltrar_Click(object sender, EventArgs e)
-        {
-                
-        }
 
         private void FormUsuario_Load(object sender, EventArgs e)
         {
@@ -98,7 +103,31 @@ namespace Presentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Muy pronto, estoy cansado jefe....");
+            
+
+            if (datagridProductosUser.SelectedRows.Count > 0)
+            {
+                var row = ((DataRowView)datagridProductosUser.SelectedRows[0].DataBoundItem).Row;
+                carrito.AgregarProducto(row);
+                MessageBox.Show("Prodcuto agregado al carrito");
+                datagridProductosUser.ClearSelection();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un producto en la lista antes de agregarlo");
+            }
+
+
+        }
+
+        private void btnCarrito_Click(object sender, EventArgs e)
+        {
+            FormCarrito frm4 = new FormCarrito(carrito);
+            frm4.Owner = this;
+            frm4.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
+
+            datagridProductosUser.ClearSelection();
+            this.Hide();
         }
 
         private void txtCategoria_Click(object sender, EventArgs e)
@@ -171,7 +200,7 @@ namespace Presentacion
             filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
             datagridProductosUser.DataSource = filterBs;
 
-
+            datagridProductosUser.ClearSelection();
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
@@ -204,12 +233,34 @@ namespace Presentacion
                 filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
                 datagridProductosUser.DataSource = filterBs;
             }
+            datagridProductosUser.ClearSelection();
         }
 
         private void txtPrecioMin_TextChanged(object sender, EventArgs e)
         {
             txtPrecioMin.ForeColor = Color.Black;
 
+            if(txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min")
+            {
+            }
+            else
+            {
+                return;
+            }
+
+            //Verificamos que el valor sea un valor entero
+            if (long.TryParse(txtPrecioMin.Text, out Verificacion))
+
+            {
+                //borro el error 
+                Valorverif = long.Parse(txtPrecioMin.Text);
+            }
+            else
+            {
+                txtPrecioMin.Text = "";
+                return;
+            }
+            //
 
             if (txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min" && txtPrecioMax.Text != "Max" &&  txtCategoria.Text != "Categoria" && txtMarca.Text != "Marca")
             {
@@ -240,6 +291,7 @@ namespace Presentacion
 
                 datagridProductosUser.DataSource = filterBs;
             }
+            datagridProductosUser.ClearSelection();
 
 
         }
@@ -247,6 +299,27 @@ namespace Presentacion
         {
             txtPrecioMax.ForeColor = Color.Black;
 
+            if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max")
+            {
+            }
+            else
+            {
+                return;
+            }
+
+            //Verificamos que el valor sea un valor entero
+            if (long.TryParse(txtPrecioMax.Text, out Verificacion))
+
+            {
+                //borro el error 
+                Valorverif = long.Parse(txtPrecioMax.Text);
+            }
+            else
+            {
+                txtPrecioMax.Text = "";
+                return;
+            }
+            //
 
             if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max" && txtPrecioMin.Text != "Min" 
                 && txtCategoria.Text != "Categoria" && txtMarca.Text != "Marca")
@@ -298,6 +371,7 @@ namespace Presentacion
 
                 datagridProductosUser.DataSource = filterBs;
             }
+            datagridProductosUser.ClearSelection();
         }
 
         private void txtPrecioMin_KeyDown(object sender, KeyEventArgs e)
@@ -350,6 +424,16 @@ namespace Presentacion
         {
             this.Hide(); // Oculta el formulario actual
             Owner.Show(); // Muestra el formulario padre
+        }
+
+        private void btnBorrarFiltros_Click(object sender, EventArgs e)
+        {
+            txtCategoria.Text = "";
+            txtMarca.Text = "";
+            txtPrecioMin.Text = "";
+            txtPrecioMax.Text = "";
+            FormUsuario_Click(sender, e);
+
         }
     }
 }
