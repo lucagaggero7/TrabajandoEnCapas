@@ -166,9 +166,6 @@
     <None Include="Resources\Eo_circle_green_checkmark.svg.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\signin.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pngtree-abstract-modern-background-portfolio-picture-image_1447413.jpg" />
   </ItemGroup>
   <ItemGroup>

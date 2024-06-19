@@ -12,7 +12,6 @@ namespace Datos
 {
     public class DatosProductos : DatosConexionBD
     {
-      
         public int abmProductos(string accion, Producto objProfesional)
         {
             int resultado;
@@ -47,7 +46,6 @@ namespace Datos
             }
             return resultado;
         }
-
 
         ////con esta query solamente podemos saber si existe o no el registro
         //    if (accion == "Buscar")
