@@ -58,6 +58,18 @@
     <Compile Include="FormCarrito.Designer.cs">
       <DependentUpon>FormCarrito.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormComprar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComprar.Designer.cs">
+      <DependentUpon>FormComprar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFin.Designer.cs">
+      <DependentUpon>FormFin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUsuarioBasic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +94,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="PreLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PreLogin.Designer.cs">
+      <DependentUpon>PreLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAdmProductos.resx">
@@ -89,6 +107,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCarrito.resx">
       <DependentUpon>FormCarrito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComprar.resx">
+      <DependentUpon>FormComprar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFin.resx">
+      <DependentUpon>FormFin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuarioBasic.resx">
       <DependentUpon>FormUsuarioBasic.cs</DependentUpon>
@@ -102,6 +126,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PreLogin.resx">
+      <DependentUpon>PreLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -110,6 +137,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -133,6 +161,21 @@
       <Project>{7a3e67e8-8055-4789-920a-54bf54632bde}</Project>
       <Name>Negocios</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eo_circle_green_checkmark.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signin.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-abstract-modern-background-portfolio-picture-image_1447413.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abstract-colorful-different-form-background-free-vector.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

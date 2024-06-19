@@ -58,6 +58,8 @@ namespace Presentacion
             carrito = new Carrito();
 
             carrito.ClonarEstructura((DataTable)datagridProductosUser.DataSource);
+
+            
         }
    
 
@@ -84,6 +86,7 @@ namespace Presentacion
         private void FormUsuario_Load(object sender, EventArgs e)
         {
             datagridProductosUser.ClearSelection();
+            btnAgregar.Visible = false;
         }
 
 
@@ -434,6 +437,32 @@ namespace Presentacion
             txtPrecioMax.Text = "";
             FormUsuario_Click(sender, e);
 
+        }
+
+        private void datagridProductosUser_SelectionChanged(object sender, EventArgs e)
+        {
+            if (datagridProductosUser.SelectedRows.Count > 0)
+            {
+                btnAgregar.Visible = true;
+            }
+            else
+            {
+                btnAgregar.Visible = false;
+            }
+          
+            
+        }
+
+        private void btnCerrarSesion_Click_1(object sender, EventArgs e)
+        {
+            Owner.Show();
+            this.Hide();
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            Owner.Show();
+            this.Hide();
         }
     }
 }

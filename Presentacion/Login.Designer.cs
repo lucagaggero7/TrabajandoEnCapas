@@ -33,11 +33,13 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.chkRecordar = new System.Windows.Forms.CheckBox();
             this.btnIniciarSesion = new System.Windows.Forms.Button();
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.txtNombredeusuario = new System.Windows.Forms.TextBox();
             this.labelBienvenido = new System.Windows.Forms.Label();
+            this.btnAtras = new System.Windows.Forms.Button();
             this.PanelBarraTitulo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,6 +124,20 @@ namespace Presentacion
             this.labelBienvenido.TabIndex = 49;
             this.labelBienvenido.Text = "BIENVENIDO";
             // 
+            // btnAtras
+            // 
+            this.btnAtras.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnAtras.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAtras.BackgroundImage")));
+            this.btnAtras.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAtras.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtras.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnAtras.Location = new System.Drawing.Point(12, 40);
+            this.btnAtras.Name = "btnAtras";
+            this.btnAtras.Size = new System.Drawing.Size(31, 28);
+            this.btnAtras.TabIndex = 67;
+            this.btnAtras.UseVisualStyleBackColor = false;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,6 +145,7 @@ namespace Presentacion
             this.BackColor = System.Drawing.Color.Lavender;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(816, 489);
+            this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.chkRecordar);
             this.Controls.Add(this.btnIniciarSesion);
             this.Controls.Add(this.txtContraseña);
@@ -146,6 +163,7 @@ namespace Presentacion
             this.Controls.SetChildIndex(this.txtContraseña, 0);
             this.Controls.SetChildIndex(this.btnIniciarSesion, 0);
             this.Controls.SetChildIndex(this.chkRecordar, 0);
+            this.Controls.SetChildIndex(this.btnAtras, 0);
             this.PanelBarraTitulo.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -159,6 +177,7 @@ namespace Presentacion
         public TextBox txtContraseña;
         public TextBox txtNombredeusuario;
         private Label labelBienvenido;
+        private Button btnAtras;
     }
 
 }
