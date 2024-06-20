@@ -14,9 +14,7 @@ namespace Presentacion
 {
     public partial class FormCarrito : FrmBase
     {
-
         public Carrito carrito;
-
         public FormCarrito(Carrito carrito)
         {
             InitializeComponent();
@@ -88,7 +86,6 @@ namespace Presentacion
             {
                 btnFinalizar.Visible = false; 
             }
-
         }
 
         private void datagridCarrito_SelectionChanged(object sender, EventArgs e)

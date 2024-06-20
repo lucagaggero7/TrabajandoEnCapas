@@ -163,8 +163,6 @@ namespace Presentacion
                 // ...
             }
 
-            
-
             FormFin frm6 = new FormFin();
             frm6.Owner = this;
             frm6.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
