@@ -106,8 +106,6 @@ namespace Presentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            
-
             if (datagridProductosUser.SelectedRows.Count > 0)
             {
                 var row = ((DataRowView)datagridProductosUser.SelectedRows[0].DataBoundItem).Row;
@@ -119,8 +117,6 @@ namespace Presentacion
             {
                 MessageBox.Show("Seleccione un producto en la lista antes de agregarlo");
             }
-
-
         }
 
         private void btnCarrito_Click(object sender, EventArgs e)
@@ -160,8 +156,6 @@ namespace Presentacion
             {
                 return;
             }
-
-            
         }
 
         private void txtPrecioMin_Click(object sender, EventArgs e)
@@ -505,13 +499,10 @@ namespace Presentacion
             //////////
             if (txtPrecioMax.Text == "" && txtCategoria.Text != "")
             {
-                
-
                     BindingSource filterBs = new BindingSource();
                     filterBs.DataSource = datagridProductosUser.DataSource;
                     filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
                     datagridProductosUser.DataSource = filterBs;
-               
             }
 
             //////////
@@ -739,8 +730,6 @@ namespace Presentacion
             {
                 btnAgregar.Visible = false;
             }
-          
-            
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
@@ -763,7 +752,6 @@ namespace Presentacion
                 e.Handled = true; // Ignorar la entrada si ya hay 9 dígitos
             }
         }
-
         private void txtPrecioMax_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Verificar si la tecla presionada es un dígito o la tecla de retroceso
