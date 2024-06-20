@@ -22,6 +22,11 @@ namespace Presentacion
 
         public string index;
 
+        public string accion;
+
+        long Valorverif;
+        long Verificacion;
+
         public FormAdmProductos()
         {
             InitializeComponent();
@@ -95,9 +100,116 @@ namespace Presentacion
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
+            //Verificamos que el valor sea un valor entero
+            if (long.TryParse(txtCodigo.Text, out Verificacion))
+
+            {
+                //borro el error 
+                Valorverif = long.Parse(txtCodigo.Text);
+                errorCodigo.Clear();
+            }
+            else
+            {
+                errorCodigo.SetError(txtCodigo, "Ingrese un codigo para cargar");
+                return;
+            }
+
+            //Verificamos que el codigo no exista ya en la lista de productos
+
+
+            accion = "Buscar o Borrar";
+            TxtBox_a_Clase(accion);
+            index = objNegProductos.BuscarProducto(objEntProducto).ToString();
+
+            foreach (DataGridViewRow Row in datagridProductos.Rows)
+            {
+                String strFila = Row.Index.ToString();
+                foreach (DataGridViewCell cell in Row.Cells)
+                {
+                    string Valor = Convert.ToString(cell.Value);
+                    if (Valor == index)
+                    {
+                        errorCodigo.SetError(txtCodigo, "Este codigo ya esta cargado en el la lista");
+                        return;
+                    }
+                    else
+                    {
+                        errorCodigo.Clear();
+                    }
+                }
+            }
+
+            //Verificamos que el nombre no este vacia
+            if (txtNombre.Text != "")
+
+            {
+                //borro el error 
+                errorNombre.Clear();
+            }
+            else
+            {
+                errorNombre.SetError(txtNombre, "Ingrese un nombre para cargar");
+                return;
+            }
+
+            //Verificamos que la marca no este vacia
+            if (txtMarca.Text != "")
+
+            {
+                //borro el error 
+                errorMarca.Clear();
+            }
+            else
+            {
+                errorMarca.SetError(txtMarca, "Ingrese una marca para cargar");
+                return;
+            }
+
+            //Verificamos que la categoria no este vacia
+            if (txtCategoria.Text != "")
+
+            {
+                //borro el error 
+                errorCategoria.Clear();
+            }
+            else
+            {
+                errorCategoria.SetError(txtCategoria, "Ingrese una categoria para cargar");
+                return;
+            }
+
+            //Verificamos que el precio sea un valor entero
+            if (long.TryParse(txtPrecio.Text, out Verificacion))
+
+            {
+                //borro el error 
+                Valorverif = long.Parse(txtPrecio.Text);
+                errorPrecio.Clear();
+            }
+            else
+            {
+                errorPrecio.SetError(txtPrecio, "Ingrese un precio para cargar");
+                return;
+            }
+
+            //Verificamos que el stock sea un valor entero
+            if (long.TryParse(txtStock.Text, out Verificacion))
+
+            {
+                //borro el error 
+                Valorverif = long.Parse(txtStock.Text);
+                errorStock.Clear();
+            }
+            else
+            {
+                errorStock.SetError(txtStock, "Ingrese un stock para cargar");
+                return;
+            }
+
+
             int nGrabados = -1;
             //llamo al método que carga los datos del objeto
-            string accion = "Cargar";
+            accion = "Cargar";
             TxtBox_a_Clase(accion);
             nGrabados = objNegProductos.abmProdcutos("Agregar", objEntProducto); //invoco a la capa de negocio
                 
@@ -113,9 +225,23 @@ namespace Presentacion
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
+            //Verificamos que el valor sea un valor entero
+            if (long.TryParse(txtCodigo.Text, out Verificacion))
+
+            {
+                //borro el error 
+                Valorverif = long.Parse(txtCodigo.Text);
+                errorCodigo.Clear();
+            }
+            else
+            {
+                errorCodigo.SetError(txtCodigo, "Ingrese un codigo para cargar");
+                return;
+            }
+
             int nBorrados = -1;
             //llamo al método que carga los datos del objeto
-            string accion = "Buscar o Borrar";
+            accion = "Buscar o Borrar";
             TxtBox_a_Clase(accion);
             nBorrados = objNegProductos.abmProdcutos("Borrar", objEntProducto); //invoco a la capa de negocio
 
@@ -133,7 +259,22 @@ namespace Presentacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string accion = "Buscar o Borrar";
+            //Verificamos que el valor sea un valor entero
+            if (long.TryParse(txtCodigo.Text, out Verificacion))
+
+            {
+                //borro el error 
+                Valorverif = long.Parse(txtCodigo.Text);
+                errorCodigo.Clear();
+            }
+            else
+            {
+                errorCodigo.SetError(txtCodigo, "Ingrese un codigo para buscar");
+                return;
+            }
+
+
+            accion = "Buscar o Borrar";
             TxtBox_a_Clase(accion);
             index = objNegProductos.BuscarProducto(objEntProducto).ToString();
 
@@ -163,6 +304,11 @@ namespace Presentacion
         {
             this.Hide(); // Oculta el formulario actual
             Owner.Show(); // Muestra el formulario padre
+        }
+
+        private void lblStock_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

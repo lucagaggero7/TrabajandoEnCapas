@@ -30,6 +30,7 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtCodigo = new System.Windows.Forms.TextBox();
@@ -50,8 +51,20 @@ namespace Presentacion
             this.lblMarca = new System.Windows.Forms.Label();
             this.txtMarca = new System.Windows.Forms.TextBox();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
+            this.errorCodigo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorNombre = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorMarca = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorCategoria = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorPrecio = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorStock = new System.Windows.Forms.ErrorProvider(this.components);
             this.PanelBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorCodigo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorNombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorMarca)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorCategoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorStock)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCerrar
@@ -198,11 +211,12 @@ namespace Presentacion
             // 
             this.lblStock.AutoSize = true;
             this.lblStock.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStock.Location = new System.Drawing.Point(219, 181);
+            this.lblStock.Location = new System.Drawing.Point(215, 181);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(35, 15);
             this.lblStock.TabIndex = 11;
             this.lblStock.Text = "Stock";
+            this.lblStock.Click += new System.EventHandler(this.lblStock_Click);
             // 
             // txtStock
             // 
@@ -216,7 +230,7 @@ namespace Presentacion
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(217, 120);
+            this.lblCategoria.Location = new System.Drawing.Point(215, 115);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(56, 15);
             this.lblCategoria.TabIndex = 13;
@@ -234,7 +248,7 @@ namespace Presentacion
             // 
             this.lblPrecio.AutoSize = true;
             this.lblPrecio.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(217, 149);
+            this.lblPrecio.Location = new System.Drawing.Point(215, 149);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(39, 15);
             this.lblPrecio.TabIndex = 15;
@@ -276,6 +290,30 @@ namespace Presentacion
             this.btnCerrarSesion.Text = "Cerrar Sesion";
             this.btnCerrarSesion.UseVisualStyleBackColor = true;
             this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
+            // errorCodigo
+            // 
+            this.errorCodigo.ContainerControl = this;
+            // 
+            // errorNombre
+            // 
+            this.errorNombre.ContainerControl = this;
+            // 
+            // errorMarca
+            // 
+            this.errorMarca.ContainerControl = this;
+            // 
+            // errorCategoria
+            // 
+            this.errorCategoria.ContainerControl = this;
+            // 
+            // errorPrecio
+            // 
+            this.errorPrecio.ContainerControl = this;
+            // 
+            // errorStock
+            // 
+            this.errorStock.ContainerControl = this;
             // 
             // FormAdmProductos
             // 
@@ -325,6 +363,12 @@ namespace Presentacion
             this.Controls.SetChildIndex(this.btnCerrarSesion, 0);
             this.PanelBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorCodigo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorNombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorMarca)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorCategoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorStock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,5 +394,11 @@ namespace Presentacion
         private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.TextBox txtMarca;
         private Button btnCerrarSesion;
+        private ErrorProvider errorCodigo;
+        private ErrorProvider errorNombre;
+        private ErrorProvider errorMarca;
+        private ErrorProvider errorCategoria;
+        private ErrorProvider errorPrecio;
+        private ErrorProvider errorStock;
     }
 }
