@@ -84,11 +84,9 @@ namespace Presentacion
         private void Ds_a_TxtBox(DataSet ds)
         {
             txtCodigo.Text = ds.Tables[0].Rows[0]["CodProf"].ToString();
-
             txtNombre.Text = ds.Tables[0].Rows[0]["Nombre"].ToString();
             txtMarca.Text = ds.Tables[0].Rows[0]["Marca"].ToString();
             txtCategoria.Text = ds.Tables[0].Rows[0]["Categoria"].ToString();
-
             txtPrecio.Text = ds.Tables[0].Rows[0]["Precio"].ToString();
             txtStock.Text = ds.Tables[0].Rows[0]["Stock"].ToString();
 
@@ -155,7 +153,6 @@ namespace Presentacion
                     {
                         lblMensaje.Text = " No existe en el sistema";
                         datagridProductos.ClearSelection();
-                        
                     }
                 }
 
