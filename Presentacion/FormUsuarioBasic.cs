@@ -32,7 +32,6 @@ namespace Presentacion
         long Valorverif;
         long Verificacion;
 
-
         public FormUsuarioBasic()
         {
 
@@ -44,7 +43,6 @@ namespace Presentacion
             //datagridProductosUser.Columns[3].HeaderText = "Categoria";
             //datagridProductosUser.Columns[4].HeaderText = "Precio";
             //datagridProductosUser.Columns[5].HeaderText = "Stock";
-
 
             //datagridProductosUser.Columns[0].Width = 60;
             //datagridProductosUser.Columns[1].Width = 90;
@@ -58,8 +56,6 @@ namespace Presentacion
             carrito = new Carrito();
 
             carrito.ClonarEstructura((DataTable)datagridProductosUser.DataSource);
-
-            
         }
    
 
