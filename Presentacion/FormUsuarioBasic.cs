@@ -198,10 +198,90 @@ namespace Presentacion
         {
             txtCategoria.ForeColor = Color.Black;
 
-            BindingSource filterBs = new BindingSource();
-            filterBs.DataSource = datagridProductosUser.DataSource;
-            filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
-            datagridProductosUser.DataSource = filterBs;
+
+            ///SIN MARCA
+            //si se ingresa categoria sin ingresar precio min ni precio max ni marca
+            if (txtPrecioMin.Text == "Min" && txtPrecioMax.Text == "Max" && txtMarca.Text == "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //si se ingresa categoria y precio min sin ingresar precio max ni marca
+            if (txtPrecioMin.Text != "Min" && txtPrecioMax.Text == "Max" && txtMarca.Text == "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtCategoria.Text, int.Parse(txtPrecioMin.Text), int.MaxValue);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //si se ingresa categoria y precio max sin ingresar precio min ni marca
+            if (txtPrecioMin.Text == "Min" && txtPrecioMax.Text != "Max" && txtMarca.Text == "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtCategoria.Text, int.MinValue, int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //si se ingresa categoria, precio min y precio max sin ingresar marca
+            if (txtPrecioMin.Text != "Min" && txtPrecioMax.Text != "Max" && txtMarca.Text == "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtCategoria.Text, int.Parse(txtPrecioMin.Text), int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////////////////////////////
+
+
+            ///CON MARCA
+            //si se ingresa categoria y marca sin ingresar precio min ni precio max 
+            if (txtPrecioMin.Text == "Min" && txtPrecioMax.Text == "Max" && txtMarca.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%'",
+                                                 txtCategoria.Text, txtMarca.Text);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //si se ingresa categoria, precio min y marca sin ingresar precio max
+            if (txtPrecioMin.Text != "Min" && txtPrecioMax.Text == "Max" && txtMarca.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%' AND Precio >= {2} AND Precio <= {3}",
+                                                 txtCategoria.Text, txtMarca.Text, int.Parse(txtPrecioMin.Text), int.MaxValue);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //si se ingresa categoria, precio max y marca sin ingresar precio min 
+            if (txtPrecioMin.Text == "Min" && txtPrecioMax.Text != "Max" && txtMarca.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%' AND Precio >= {2} AND Precio <= {3}",
+                                                 txtCategoria.Text, txtMarca.Text, int.MinValue, int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //si se ingresa categoria, precio min, precio max y marca
+            if (txtPrecioMin.Text != "Min" && txtPrecioMax.Text != "Max" && txtMarca.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%' AND Precio >= {2} AND Precio <= {3}",
+                                                 txtCategoria.Text, txtMarca.Text, int.Parse(txtPrecioMin.Text), int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
 
             datagridProductosUser.ClearSelection();
         }
@@ -210,7 +290,15 @@ namespace Presentacion
         {
             txtMarca.ForeColor = Color.Black;
 
-            if (txtMarca.Text != "" && txtCategoria.Text != "Categoria")
+            if (txtMarca.Text != "" && txtCategoria.Text == "" && txtPrecioMin.Text == "Min" && txtPrecioMax.Text == "Max")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Marca like '%" + txtMarca.Text + "%'");
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            if (txtMarca.Text != "" && txtCategoria.Text != "")
             {
                 BindingSource filterBs = new BindingSource();
                 filterBs.DataSource = datagridProductosUser.DataSource;
@@ -218,7 +306,7 @@ namespace Presentacion
                 datagridProductosUser.DataSource = filterBs;
             }
 
-            if(txtMarca.Text == "" && txtCategoria.Text != "Categoria")
+            if(txtMarca.Text == "" && txtCategoria.Text != "")
             {
                 if (txtCategoria.Text != "")
                 {
@@ -227,15 +315,47 @@ namespace Presentacion
                     filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
                     datagridProductosUser.DataSource = filterBs;
                 }
-            }    
+            }
 
-            if(txtCategoria.Text == "" && txtMarca.Text == "" && txtPrecioMin.Text == "Min" && txtPrecioMax.Text == "Max")
+            if (txtCategoria.Text == "" && txtMarca.Text == "" && txtPrecioMin.Text == "Min" && txtPrecioMax.Text == "Max")
             {
                 BindingSource filterBs = new BindingSource();
                 filterBs.DataSource = datagridProductosUser.DataSource;
                 filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
                 datagridProductosUser.DataSource = filterBs;
             }
+
+
+            //////////////
+            if (txtCategoria.Text == "" && txtMarca.Text != "" && txtPrecioMin.Text != "Min" && txtPrecioMax.Text == "Max")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Marca like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtMarca.Text, int.Parse(txtPrecioMin.Text), int.MaxValue);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////////
+            if (txtCategoria.Text == "" && txtMarca.Text != "" && txtPrecioMin.Text == "Min" && txtPrecioMax.Text != "Max")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Marca like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtMarca.Text, int.MinValue, int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////////
+            if (txtCategoria.Text == "" && txtMarca.Text != "" && txtPrecioMin.Text != "Min" && txtPrecioMax.Text != "Max")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Marca like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtMarca.Text, int.Parse(txtPrecioMin.Text), int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
+
             datagridProductosUser.ClearSelection();
         }
 
@@ -243,11 +363,77 @@ namespace Presentacion
         {
             txtPrecioMin.ForeColor = Color.Black;
 
-            if(txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min")
+            //////////
+            if (txtPrecioMin.Text == "" && txtCategoria.Text != "")
+            {
+              
+   
+                    BindingSource filterBs = new BindingSource();
+                    filterBs.DataSource = datagridProductosUser.DataSource;
+                    filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
+                    datagridProductosUser.DataSource = filterBs;
+                
+            }
+
+            //////////
+            if (txtPrecioMin.Text == "" && txtMarca.Text != "")
+            {
+               
+                    BindingSource filterBs = new BindingSource();
+                    filterBs.DataSource = datagridProductosUser.DataSource;
+                    filterBs.Filter = string.Format("Marca like '%" + txtMarca.Text + "%'");
+                    datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            if (txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min" && txtMarca.Text != "" && txtPrecioMax.Text == "Max")
+            {
+
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Marca like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtMarca.Text, int.Parse(txtPrecioMin.Text), int.MaxValue);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            if (txtPrecioMin.Text == "Min" && txtCategoria.Text != "" && txtMarca.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%'",
+                                                txtCategoria.Text, txtMarca.Text);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+
+            //////////
+            if (txtPrecioMin.Text != "Min" && txtPrecioMin.Text != "" && txtPrecioMax.Text == "Max" && txtMarca.Text == "" && txtCategoria.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtCategoria.Text, int.Parse(txtPrecioMin.Text), int.MaxValue);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            if (txtPrecioMin.Text != "Min" && txtPrecioMin.Text != "" && txtPrecioMax.Text == "Max" && txtMarca.Text != "" && txtCategoria.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%' AND Precio >= {2} AND Precio <= {3}",
+                                                 txtCategoria.Text, txtMarca.Text, int.Parse(txtPrecioMin.Text), int.MaxValue);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+
+            if (txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min")
             {
             }
             else
             {
+                datagridProductosUser.ClearSelection();
                 return;
             }
 
@@ -261,11 +447,12 @@ namespace Presentacion
             else
             {
                 txtPrecioMin.Text = "";
+                datagridProductosUser.ClearSelection();
                 return;
             }
             //
 
-            if (txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min" && txtPrecioMax.Text != "Max" &&  txtCategoria.Text != "Categoria" && txtMarca.Text != "Marca")
+            if (txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min" && txtPrecioMax.Text != "Max" &&  txtCategoria.Text != "" && txtMarca.Text != "")
             {
                 BindingSource filterBs = new BindingSource();
                 filterBs.DataSource = datagridProductosUser.DataSource;
@@ -275,7 +462,7 @@ namespace Presentacion
                 datagridProductosUser.DataSource = filterBs;
             }
            
-            if(txtPrecioMin.Text == "Min" && txtPrecioMax.Text != "Max" && txtCategoria.Text != "Categoria" && txtMarca.Text != "Marca")
+            if(txtPrecioMin.Text == "Min" && txtPrecioMax.Text != "Max" && txtCategoria.Text != "" && txtMarca.Text != "")
             {
                 BindingSource filterBs = new BindingSource();
                 filterBs.DataSource = datagridProductosUser.DataSource;
@@ -302,11 +489,99 @@ namespace Presentacion
         {
             txtPrecioMax.ForeColor = Color.Black;
 
+            if (txtPrecioMax.Text == "" && txtCategoria.Text == "" && txtMarca.Text == "" && txtPrecioMin.Text == "Min")
+            {
+                //REINICIAR FILTROS
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = null;
+                datagridProductosUser.DataSource = filterBs;
+                //
+
+                datagridProductosUser.ClearSelection();
+            }
+
+
+            //////////
+            if (txtPrecioMax.Text == "" && txtCategoria.Text != "")
+            {
+                
+
+                    BindingSource filterBs = new BindingSource();
+                    filterBs.DataSource = datagridProductosUser.DataSource;
+                    filterBs.Filter = string.Format("Categoria like '%" + txtCategoria.Text + "%'");
+                    datagridProductosUser.DataSource = filterBs;
+               
+            }
+
+            //////////
+            if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max" && txtMarca.Text != "" && txtPrecioMin.Text == "Min")
+            {
+
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Marca like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtMarca.Text, int.MinValue, int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            if (txtPrecioMax.Text == "" && txtMarca.Text != "" && txtPrecioMin.Text == "Min" && txtCategoria.Text == "")
+            {
+
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Marca like '%" + txtMarca.Text + "%'");
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            if (txtPrecioMax.Text == "" && txtMarca.Text != "" && txtCategoria.Text == "")
+            {
+            
+                    BindingSource filterBs = new BindingSource();
+                    filterBs.DataSource = datagridProductosUser.DataSource;
+                    filterBs.Filter = string.Format("Marca like '%" + txtMarca.Text + "%'");
+                    datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            if (txtPrecioMax.Text == "" && txtCategoria.Text != "" && txtMarca.Text != "")
+            {
+                    BindingSource filterBs = new BindingSource();
+                    filterBs.DataSource = datagridProductosUser.DataSource;
+                    filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%'",
+                                                 txtCategoria.Text, txtMarca.Text);
+                    datagridProductosUser.DataSource = filterBs;
+                
+            }
+
+            //////////
+            if (txtPrecioMax.Text != "Max" && txtPrecioMax.Text != "" && txtPrecioMin.Text == "Min" && txtMarca.Text == "" && txtCategoria.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                 txtCategoria.Text, int.MinValue, int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            if (txtPrecioMax.Text != "Max" && txtPrecioMax.Text != "" && txtPrecioMin.Text == "Min" && txtMarca.Text != "" && txtCategoria.Text != "")
+            {
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%' AND Precio >= {2} AND Precio <= {3}",
+                                                 txtCategoria.Text, txtMarca.Text, int.MinValue, int.Parse(txtPrecioMax.Text));
+                datagridProductosUser.DataSource = filterBs;
+            }
+
             if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max")
             {
             }
             else
             {
+                datagridProductosUser.ClearSelection();
                 return;
             }
 
@@ -320,12 +595,13 @@ namespace Presentacion
             else
             {
                 txtPrecioMax.Text = "";
+                datagridProductosUser.ClearSelection();
                 return;
             }
             //
 
             if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max" && txtPrecioMin.Text != "Min" 
-                && txtCategoria.Text != "Categoria" && txtMarca.Text != "Marca")
+                && txtCategoria.Text != "" && txtMarca.Text != "")
             {
                 BindingSource filterBs = new BindingSource();
                 filterBs.DataSource = datagridProductosUser.DataSource;
@@ -335,7 +611,7 @@ namespace Presentacion
                 datagridProductosUser.DataSource = filterBs;
             }
 
-            if (txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min" && txtPrecioMax.Text == "Max" && txtCategoria.Text != "Categoria" && txtMarca.Text != "Marca")
+            if (txtPrecioMin.Text != "" && txtPrecioMin.Text != "Min" && txtPrecioMax.Text == "Max" && txtCategoria.Text != "" && txtMarca.Text != "")
             {
                 BindingSource filterBs = new BindingSource();
                 filterBs.DataSource = datagridProductosUser.DataSource;
@@ -431,10 +707,24 @@ namespace Presentacion
 
         private void btnBorrarFiltros_Click(object sender, EventArgs e)
         {
+            //Limpiar textboxs
             txtCategoria.Text = "";
             txtMarca.Text = "";
             txtPrecioMin.Text = "";
             txtPrecioMax.Text = "";
+
+            //REINICIAR FILTROS
+            BindingSource filterBs = new BindingSource();
+            filterBs.DataSource = datagridProductosUser.DataSource;
+            filterBs.Filter  = null;
+            datagridProductosUser.DataSource = filterBs;
+            //
+
+            //Corregir textos
+            txtPrecioMin_Leave(sender, e);
+            txtPrecioMax_Leave(sender, e);
+
+            //quitar focos
             FormUsuario_Click(sender, e);
 
         }
@@ -453,16 +743,70 @@ namespace Presentacion
             
         }
 
-        private void btnCerrarSesion_Click_1(object sender, EventArgs e)
+        private void btnAtras_Click(object sender, EventArgs e)
         {
             Owner.Show();
             this.Hide();
         }
 
-        private void btnAtras_Click(object sender, EventArgs e)
+        private void txtPrecioMin_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Owner.Show();
-            this.Hide();
+            // Verificar si la tecla presionada es un dígito o la tecla de retroceso
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar la entrada no válida
+            }
+
+            // Limitar la longitud del texto a 9 dígitos
+            if (txtPrecioMin.Text.Length >= 9 && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar la entrada si ya hay 9 dígitos
+            }
+        }
+
+        private void txtPrecioMax_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla presionada es un dígito o la tecla de retroceso
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar la entrada no válida
+            }
+
+            // Limitar la longitud del texto a 9 dígitos
+            if (txtPrecioMax.Text.Length >= 9 && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar la entrada si ya hay 9 dígitos
+            }
+        }
+
+        private void txtCategoria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla presionada es una letra o la tecla de retroceso
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar la entrada no válida
+            }
+
+            // Limitar la longitud del texto a 13 caracteres
+            if (txtCategoria.Text.Length >= 13 && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar la entrada si ya hay 13 caracteres
+            }
+        }
+
+        private void txtMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificar si la tecla presionada es una letra, un número o la tecla de retroceso
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar la entrada no válida
+            }
+
+            // Limitar la longitud del texto a 13 caracteres
+            if (txtMarca.Text.Length >= 13 && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ignorar la entrada si ya hay 13 caracteres
+            }
         }
     }
 }
