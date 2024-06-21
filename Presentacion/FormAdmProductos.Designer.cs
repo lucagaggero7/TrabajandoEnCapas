@@ -96,7 +96,7 @@ namespace Presentacion
             // btnCargar
             // 
             this.btnCargar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargar.Location = new System.Drawing.Point(88, 289);
+            this.btnCargar.Location = new System.Drawing.Point(88, 316);
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(80, 27);
             this.btnCargar.TabIndex = 1;
@@ -188,7 +188,7 @@ namespace Presentacion
             // btnBorrar
             // 
             this.btnBorrar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBorrar.Location = new System.Drawing.Point(260, 289);
+            this.btnBorrar.Location = new System.Drawing.Point(260, 316);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(80, 27);
             this.btnBorrar.TabIndex = 8;
@@ -199,7 +199,7 @@ namespace Presentacion
             // btnBuscar
             // 
             this.btnBuscar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(174, 289);
+            this.btnBuscar.Location = new System.Drawing.Point(174, 316);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(80, 27);
             this.btnBuscar.TabIndex = 9;
