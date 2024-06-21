@@ -16,8 +16,8 @@ namespace Presentacion
 
         //variables que cuentan los clicks de los textbox para simular placeholders
         int nombreclick = 0;
-        int linea1click = 0;
-        int linea2click = 0;
+        int direccionclick = 0;
+        int localidadclick = 0;
         int codpostalclick = 0;
         int telefonoclick = 0;
         int dniclick = 0;
@@ -69,8 +69,8 @@ namespace Presentacion
 
             //Ejecutamos los evenetos leave para ahorrar lineas if
             txtNombre_Leave(sender, e);
-            txtLinea1_Leave(sender, e);
-            txtLinea2_Leave(sender, e);
+            txtDireccion_Leave(sender, e);
+            txtLocalidad_Leave(sender, e);
             txtCodPostal_Leave(sender, e);
             txtTelefono_Leave(sender, e);
             txtDni_Leave(sender, e);
@@ -86,6 +86,9 @@ namespace Presentacion
             rtbCampos.Select(0, 1); // Selecciona solo el asterisco
             rtbCampos.SelectionColor = Color.Red; // Cambia el color del texto seleccionado a rojo
             rtbCampos.DeselectAll(); // Deselecciona el texto
+
+            txtProvincia.SelectedItem = "Provincia";
+
         }
 
         private void btnComprar_Click(object sender, EventArgs e)
@@ -102,19 +105,37 @@ namespace Presentacion
             }
 
             // Valida la primera línea de una dirección
-            if (!EsDireccionValida(txtLinea1.Text))
+            if (!EsDireccionValida(txtDireccion.Text))
             {
-                errorLinea1.SetError(panelLinea1, "Ingrese la primera línea de la dirección.");
+                errorDireccion.SetError(panelDireccion, "Ingrese la primera línea de la dirección.");
                 return;
             }
             else
             {
-                errorLinea1.Clear(); // Limpia el mensaje de error si es válido
+                errorDireccion.Clear(); // Limpia el mensaje de error si es válido
             }
 
-            // Continúa con la lógica de compra si ambos campos son válidos
-            // ...
+            // Valida la provincia
+            if (txtProvincia.Text == "Provincia" || txtProvincia.Text == "")
+            {
+                errorProvincia.SetError(panelProvincia, "Seleccione una provincia");
+                return;
+            }
+            else
+            {
+                errorProvincia.Clear(); // Limpia el mensaje de error si es válido
+            }
 
+            // Valida la Localidad
+            if (txtLocalidad.Text == "Localidad" || txtLocalidad.Text == "")
+            {
+                errorLocalidad.SetError(panelLocalidad, "Ingrese una localidad valida");
+                return;
+            }
+            else
+            {
+                errorLocalidad.Clear(); // Limpia el mensaje de error si es válido
+            }
 
 
             // Reemplaza 'EsCodigoPostalValido' con tu lógica de validación de códigos postales
@@ -170,7 +191,6 @@ namespace Presentacion
 
         }
 
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide(); // Oculta el formulario actual
@@ -197,34 +217,18 @@ namespace Presentacion
             }
         }
 
-        private void txtLinea1_Click(object sender, EventArgs e)
+        private void txtLocalidad_Click(object sender, EventArgs e)
         {
-            linea1click++;
+            localidadclick++;
 
-            if (linea1click >= 1 && txtLinea1.Text == "Direccion Linea #1")
+            if (localidadclick >= 1 && txtLocalidad.Text == "Localidad")
             {
-                txtLinea1.Text = "";
+                txtLocalidad.Text = "";
             }
             else
             {
                 return;
             }
-        }
-
-        private void txtLinea2_Click(object sender, EventArgs e)
-        {
-
-            linea2click++;
-
-            if (linea2click >= 1 && txtLinea2.Text == "Direccion Linea #2 (opcional)")
-            {
-                txtLinea2.Text = "";
-            }
-            else
-            {
-                return;
-            }
-
         }
 
         private void txtCodPostal_Click(object sender, EventArgs e)
@@ -276,16 +280,10 @@ namespace Presentacion
             txtNombre.ForeColor = Color.Black;
         }
 
-        private void txtLinea1_TextChanged(object sender, EventArgs e)
+        private void txtLocalidad_TextChanged(object sender, EventArgs e)
         {
-            linea1click++;
-            txtLinea1.ForeColor = Color.Black;
-        }
-
-        private void txtLinea2_TextChanged(object sender, EventArgs e)
-        {
-            linea2click++;
-            txtLinea2.ForeColor = Color.Black;
+            localidadclick++;
+            txtLocalidad.ForeColor = Color.Black;
         }
 
         private void txtCodPostal_TextChanged(object sender, EventArgs e)
@@ -318,30 +316,17 @@ namespace Presentacion
             {
                 return;
             }
-
         }
 
-        private void txtLinea1_KeyDown(object sender, KeyEventArgs e)
+   
+
+        private void txtLocalidad_KeyDown(object sender, KeyEventArgs e)
         {
-            linea1click++;
+            localidadclick++;
 
-            if (linea1click >= 1 && txtLinea1.Text == "Direccion Linea #1")
+            if (localidadclick >= 1 && txtLocalidad.Text == "Localidad")
             {
-                txtLinea1.Text = "";
-            }
-            else
-            {
-                return;
-            }
-        }
-
-        private void txtLinea2_KeyDown(object sender, KeyEventArgs e)
-        {
-            linea1click++;
-
-            if (linea2click >= 1 && txtLinea2.Text == "Direccion Linea #2 (opcional)")
-            {
-                txtLinea2.Text = "";
+                txtLocalidad.Text = "";
             }
             else
             {
@@ -400,21 +385,12 @@ namespace Presentacion
             }
         }
 
-        private void txtLinea1_Leave(object sender, EventArgs e)
+        private void txtLocalidad_Leave(object sender, EventArgs e)
         {
-            if (txtLinea1.Text == "")
+            if (txtLocalidad.Text == "")
             {
-                txtLinea1.Text = "Direccion Linea #1";
-                txtLinea1.ForeColor = Color.DarkGray;
-            }
-        }
-
-        private void txtLinea2_Leave(object sender, EventArgs e)
-        {
-            if (txtLinea2.Text == "")
-            {
-                txtLinea2.Text = "Direccion Linea #2 (opcional)";
-                txtLinea2.ForeColor = Color.DarkGray;
+                txtLocalidad.Text = "Localidad";
+                txtLocalidad.ForeColor = Color.DarkGray;
             }
         }
 
@@ -455,17 +431,8 @@ namespace Presentacion
             }
         }
 
-        private void txtLinea1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permite letras, números, la tecla de retroceso, espacios y algunos signos de puntuación
-            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar)
-                && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != '-' && e.KeyChar != '/')
-            {
-                e.Handled = true; // Rechaza el carácter
-            }
-        }
 
-        private void txtLinea2_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtLocalidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permite letras, números, la tecla de retroceso, espacios y algunos signos de puntuación
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar)
@@ -502,6 +469,22 @@ namespace Presentacion
             }
         }
 
+        private void txtProvincia_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            txtProvincia.ForeColor = Color.Black;
+
+            //quita el molesto highlight del combobox
+            this.ActiveControl = null;
+            //
+        }
+
+        private void txtProvincia_DropDown(object sender, EventArgs e)
+        {
+            txtProvincia.Items.Remove("Provincia");
+
+            txtProvincia.ForeColor = Color.Black;
+        }
+
         // Método para validar un nombre y apellido (ajusta según tus necesidades)
         private bool EsNombreValido(string nombre)
         {
@@ -512,6 +495,10 @@ namespace Presentacion
         // Método para validar la primera línea de una dirección (ajusta según tus necesidades)
         private bool EsDireccionValida(string direccion)
         {
+            if (txtDireccion.Text == "Direccion")
+            {
+                return false;
+            }
             // Ejemplo: verifica si contiene letras y números (ajusta según tus necesidades)
             return System.Text.RegularExpressions.Regex.IsMatch(direccion, @"^[A-Za-z0-9\s.,'-]+$");
         }
@@ -521,6 +508,59 @@ namespace Presentacion
         {
             // Verifica si tiene entre 4 y 6 dígitos
             return System.Text.RegularExpressions.Regex.IsMatch(codPostal, @"^\d{4,6}$");
+        }
+
+        private void txtDireccion_Click(object sender, EventArgs e)
+        {
+            direccionclick++;
+
+            if (direccionclick >= 1 && txtDireccion.Text == "Direccion")
+            {
+                txtDireccion.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtDireccion_KeyDown(object sender, KeyEventArgs e)
+        {
+            direccionclick++;
+
+            if (direccionclick >= 1 && txtDireccion.Text == "Direccion")
+            {
+                txtDireccion.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite letras, números, la tecla de retroceso, espacios y algunos signos de puntuación
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar)
+                && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != '-' && e.KeyChar != '/')
+            {
+                e.Handled = true; // Rechaza el carácter
+            }
+        }
+
+        private void txtDireccion_Leave(object sender, EventArgs e)
+        {
+            if (txtDireccion.Text == "")
+            {
+                txtDireccion.Text = "Direccion";
+                txtDireccion.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtDireccion_TextChanged(object sender, EventArgs e)
+        {
+            direccionclick++;
+            txtDireccion.ForeColor = Color.Black;
         }
     }
 }
