@@ -35,20 +35,14 @@ namespace Presentacion
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnCargar = new System.Windows.Forms.Button();
-            this.lblCodigo = new System.Windows.Forms.Label();
             this.datagridProductos = new System.Windows.Forms.DataGridView();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.lblNombre = new System.Windows.Forms.Label();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.lblStock = new System.Windows.Forms.Label();
             this.txtStock = new System.Windows.Forms.TextBox();
-            this.lblCategoria = new System.Windows.Forms.Label();
             this.txtCategoria = new System.Windows.Forms.TextBox();
-            this.lblPrecio = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.lblMarca = new System.Windows.Forms.Label();
             this.txtMarca = new System.Windows.Forms.TextBox();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.errorCodigo = new System.Windows.Forms.ErrorProvider(this.components);
@@ -57,6 +51,8 @@ namespace Presentacion
             this.errorCategoria = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorPrecio = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorStock = new System.Windows.Forms.ErrorProvider(this.components);
+            this.panelCarga = new System.Windows.Forms.Panel();
+            this.lblCarga = new System.Windows.Forms.Label();
             this.PanelBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorCodigo)).BeginInit();
@@ -65,6 +61,7 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.errorCategoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorStock)).BeginInit();
+            this.panelCarga.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCerrar
@@ -88,10 +85,17 @@ namespace Presentacion
             // txtCodigo
             // 
             this.txtCodigo.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(88, 113);
+            this.txtCodigo.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtCodigo.Location = new System.Drawing.Point(19, 50);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(100, 22);
             this.txtCodigo.TabIndex = 0;
+            this.txtCodigo.Text = "Codigo";
+            this.txtCodigo.Click += new System.EventHandler(this.txtCodigo_Click);
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
+            this.txtCodigo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigo_KeyDown);
+            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
+            this.txtCodigo.Leave += new System.EventHandler(this.txtCodigo_Leave);
             // 
             // btnCargar
             // 
@@ -103,16 +107,6 @@ namespace Presentacion
             this.btnCargar.Text = "Cargar";
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
-            // 
-            // lblCodigo
-            // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigo.Location = new System.Drawing.Point(28, 115);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(44, 15);
-            this.lblCodigo.TabIndex = 2;
-            this.lblCodigo.Text = "Codigo";
             // 
             // datagridProductos
             // 
@@ -162,20 +156,17 @@ namespace Presentacion
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(88, 146);
+            this.txtNombre.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtNombre.Location = new System.Drawing.Point(19, 83);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 22);
             this.txtNombre.TabIndex = 4;
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(28, 149);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(49, 15);
-            this.lblNombre.TabIndex = 6;
-            this.lblNombre.Text = "Nombre";
+            this.txtNombre.Text = "Nombre";
+            this.txtNombre.Click += new System.EventHandler(this.txtNombre_Click);
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
+            this.txtNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyDown);
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
             // 
             // lblMensaje
             // 
@@ -207,78 +198,65 @@ namespace Presentacion
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // lblStock
-            // 
-            this.lblStock.AutoSize = true;
-            this.lblStock.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStock.Location = new System.Drawing.Point(215, 181);
-            this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(35, 15);
-            this.lblStock.TabIndex = 11;
-            this.lblStock.Text = "Stock";
-            this.lblStock.Click += new System.EventHandler(this.lblStock_Click);
-            // 
             // txtStock
             // 
             this.txtStock.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStock.Location = new System.Drawing.Point(277, 178);
+            this.txtStock.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtStock.Location = new System.Drawing.Point(161, 115);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(100, 22);
             this.txtStock.TabIndex = 10;
-            // 
-            // lblCategoria
-            // 
-            this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(215, 115);
-            this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(56, 15);
-            this.lblCategoria.TabIndex = 13;
-            this.lblCategoria.Text = "Categoria";
+            this.txtStock.Text = "Stock";
+            this.txtStock.Click += new System.EventHandler(this.txtStock_Click);
+            this.txtStock.TextChanged += new System.EventHandler(this.txtStock_TextChanged);
+            this.txtStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStock_KeyDown);
+            this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
+            this.txtStock.Leave += new System.EventHandler(this.txtStock_Leave);
             // 
             // txtCategoria
             // 
             this.txtCategoria.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCategoria.Location = new System.Drawing.Point(277, 113);
+            this.txtCategoria.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtCategoria.Location = new System.Drawing.Point(161, 50);
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(100, 22);
             this.txtCategoria.TabIndex = 12;
-            // 
-            // lblPrecio
-            // 
-            this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(215, 149);
-            this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(39, 15);
-            this.lblPrecio.TabIndex = 15;
-            this.lblPrecio.Text = "Precio";
+            this.txtCategoria.Text = "Categoria";
+            this.txtCategoria.Click += new System.EventHandler(this.txtCategoria_Click);
+            this.txtCategoria.TextChanged += new System.EventHandler(this.txtCategoria_TextChanged);
+            this.txtCategoria.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCategoria_KeyDown);
+            this.txtCategoria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCategoria_KeyPress);
+            this.txtCategoria.Leave += new System.EventHandler(this.txtCategoria_Leave);
             // 
             // txtPrecio
             // 
             this.txtPrecio.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.Location = new System.Drawing.Point(277, 146);
+            this.txtPrecio.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtPrecio.Location = new System.Drawing.Point(161, 83);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(100, 22);
             this.txtPrecio.TabIndex = 14;
-            // 
-            // lblMarca
-            // 
-            this.lblMarca.AutoSize = true;
-            this.lblMarca.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca.Location = new System.Drawing.Point(28, 181);
-            this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new System.Drawing.Size(38, 15);
-            this.lblMarca.TabIndex = 17;
-            this.lblMarca.Text = "Marca";
+            this.txtPrecio.Text = "Precio";
+            this.txtPrecio.Click += new System.EventHandler(this.txtPrecio_Click);
+            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
+            this.txtPrecio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrecio_KeyDown);
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
+            this.txtPrecio.Leave += new System.EventHandler(this.txtPrecio_Leave);
             // 
             // txtMarca
             // 
             this.txtMarca.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarca.Location = new System.Drawing.Point(88, 178);
+            this.txtMarca.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtMarca.Location = new System.Drawing.Point(19, 115);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(100, 22);
             this.txtMarca.TabIndex = 16;
+            this.txtMarca.Text = "Marca";
+            this.txtMarca.Click += new System.EventHandler(this.txtMarca_Click);
+            this.txtMarca.TextChanged += new System.EventHandler(this.txtMarca_TextChanged);
+            this.txtMarca.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMarca_KeyDown);
+            this.txtMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMarca_KeyPress);
+            this.txtMarca.Leave += new System.EventHandler(this.txtMarca_Leave);
             // 
             // btnCerrarSesion
             // 
@@ -315,52 +293,58 @@ namespace Presentacion
             // 
             this.errorStock.ContainerControl = this;
             // 
+            // panelCarga
+            // 
+            this.panelCarga.BackColor = System.Drawing.Color.SkyBlue;
+            this.panelCarga.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelCarga.Controls.Add(this.lblCarga);
+            this.panelCarga.Controls.Add(this.txtCodigo);
+            this.panelCarga.Controls.Add(this.txtNombre);
+            this.panelCarga.Controls.Add(this.txtMarca);
+            this.panelCarga.Controls.Add(this.txtStock);
+            this.panelCarga.Controls.Add(this.txtPrecio);
+            this.panelCarga.Controls.Add(this.txtCategoria);
+            this.panelCarga.Location = new System.Drawing.Point(12, 113);
+            this.panelCarga.Name = "panelCarga";
+            this.panelCarga.Size = new System.Drawing.Size(287, 158);
+            this.panelCarga.TabIndex = 54;
+            this.panelCarga.Click += new System.EventHandler(this.panelCarga_Click);
+            // 
+            // lblCarga
+            // 
+            this.lblCarga.AutoSize = true;
+            this.lblCarga.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarga.Location = new System.Drawing.Point(13, 0);
+            this.lblCarga.Name = "lblCarga";
+            this.lblCarga.Size = new System.Drawing.Size(214, 35);
+            this.lblCarga.TabIndex = 64;
+            this.lblCarga.Text = "CARGA DE PRODUCTOS";
+            // 
             // FormAdmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 406);
+            this.Controls.Add(this.panelCarga);
             this.Controls.Add(this.btnCerrarSesion);
-            this.Controls.Add(this.lblMarca);
-            this.Controls.Add(this.txtMarca);
-            this.Controls.Add(this.lblPrecio);
-            this.Controls.Add(this.txtPrecio);
-            this.Controls.Add(this.lblCategoria);
-            this.Controls.Add(this.txtCategoria);
-            this.Controls.Add(this.lblStock);
-            this.Controls.Add(this.txtStock);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.lblMensaje);
-            this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.datagridProductos);
-            this.Controls.Add(this.lblCodigo);
             this.Controls.Add(this.btnCargar);
-            this.Controls.Add(this.txtCodigo);
             this.Name = "FormAdmProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdmProductos";
             this.Load += new System.EventHandler(this.FormAdmProductos_Load);
-            this.Controls.SetChildIndex(this.txtCodigo, 0);
+            this.Click += new System.EventHandler(this.FormAdmProductos_Click);
             this.Controls.SetChildIndex(this.btnCargar, 0);
-            this.Controls.SetChildIndex(this.lblCodigo, 0);
             this.Controls.SetChildIndex(this.datagridProductos, 0);
-            this.Controls.SetChildIndex(this.txtNombre, 0);
-            this.Controls.SetChildIndex(this.lblNombre, 0);
             this.Controls.SetChildIndex(this.lblMensaje, 0);
             this.Controls.SetChildIndex(this.btnBorrar, 0);
             this.Controls.SetChildIndex(this.btnBuscar, 0);
-            this.Controls.SetChildIndex(this.txtStock, 0);
-            this.Controls.SetChildIndex(this.lblStock, 0);
-            this.Controls.SetChildIndex(this.txtCategoria, 0);
-            this.Controls.SetChildIndex(this.lblCategoria, 0);
-            this.Controls.SetChildIndex(this.txtPrecio, 0);
-            this.Controls.SetChildIndex(this.lblPrecio, 0);
-            this.Controls.SetChildIndex(this.txtMarca, 0);
-            this.Controls.SetChildIndex(this.lblMarca, 0);
             this.Controls.SetChildIndex(this.PanelBarraTitulo, 0);
             this.Controls.SetChildIndex(this.btnCerrarSesion, 0);
+            this.Controls.SetChildIndex(this.panelCarga, 0);
             this.PanelBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorCodigo)).EndInit();
@@ -369,6 +353,8 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.errorCategoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorStock)).EndInit();
+            this.panelCarga.ResumeLayout(false);
+            this.panelCarga.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,20 +364,14 @@ namespace Presentacion
 
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Button btnCargar;
-        private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.DataGridView datagridProductos;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.TextBox txtStock;
-        private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.TextBox txtCategoria;
-        private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.TextBox txtPrecio;
-        private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.TextBox txtMarca;
         private Button btnCerrarSesion;
         private ErrorProvider errorCodigo;
@@ -400,5 +380,7 @@ namespace Presentacion
         private ErrorProvider errorCategoria;
         private ErrorProvider errorPrecio;
         private ErrorProvider errorStock;
+        private Panel panelCarga;
+        private Label lblCarga;
     }
 }

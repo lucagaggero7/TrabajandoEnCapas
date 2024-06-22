@@ -27,6 +27,13 @@ namespace Presentacion
         long Valorverif;
         long Verificacion;
 
+        int codigoclick;
+        int nombreclick;
+        int marcaclick;
+        int categoriaclick;
+        int precioclick;
+        int stockclick;
+
         public FormAdmProductos()
         {
             InitializeComponent();
@@ -64,8 +71,17 @@ namespace Presentacion
             txtMarca.Text = string.Empty;
             txtCategoria.Text = string.Empty;
             txtPrecio.Text = string.Empty;
-            txtStock.Text = string.Empty; 
-            
+            txtStock.Text = string.Empty;
+
+            txtCodigo_Leave(txtCodigo, EventArgs.Empty);
+            txtNombre_Leave(txtNombre, EventArgs.Empty);
+            txtMarca_Leave(txtMarca, EventArgs.Empty);
+            txtCategoria_Leave(txtCategoria, EventArgs.Empty);
+            txtPrecio_Leave(txtPrecio, EventArgs.Empty);
+            txtStock_Leave(txtStock, EventArgs.Empty);
+
+            FormAdmProductos_Click(this, EventArgs.Empty);
+
         }
 
         private void TxtBox_a_Clase(string accion) //Prepara el objeto a enviar a la capa de Negocio
@@ -140,7 +156,7 @@ namespace Presentacion
             }
 
             //Verificamos que el nombre no este vacia
-            if (txtNombre.Text != "")
+            if (txtNombre.Text != "" && txtNombre.Text != "Nombre")
 
             {
                 //borro el error 
@@ -153,7 +169,7 @@ namespace Presentacion
             }
 
             //Verificamos que la marca no este vacia
-            if (txtMarca.Text != "")
+            if (txtMarca.Text != "" && txtMarca.Text != "Marca")
 
             {
                 //borro el error 
@@ -166,7 +182,7 @@ namespace Presentacion
             }
 
             //Verificamos que la categoria no este vacia
-            if (txtCategoria.Text != "")
+            if (txtCategoria.Text != "" && txtCategoria.Text != "Categoria")
 
             {
                 //borro el error 
@@ -247,7 +263,7 @@ namespace Presentacion
 
             if (nBorrados > 0)
             {
-                lblMensaje.Text = " Se borro con éxito profesionales.";
+                lblMensaje.Text = " Se borro con éxito productos.";
                 LlenarDataGrid();
                 Limpiar();
             }
@@ -306,9 +322,345 @@ namespace Presentacion
             Owner.Show(); // Muestra el formulario padre
         }
 
-        private void lblStock_Click(object sender, EventArgs e)
+        private void txtCodigo_Click(object sender, EventArgs e)
         {
+            codigoclick++;
 
+            if (codigoclick >= 1 && txtCodigo.Text == "Codigo")
+            {
+                txtCodigo.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtNombre_Click(object sender, EventArgs e)
+        {
+            nombreclick++;
+
+            if (nombreclick >= 1 && txtNombre.Text == "Nombre")
+            {
+                txtNombre.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtMarca_Click(object sender, EventArgs e)
+        {
+            marcaclick++;
+
+            if (marcaclick >= 1 && txtMarca.Text == "Marca")
+            {
+                txtMarca.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtCategoria_Click(object sender, EventArgs e)
+        {
+            categoriaclick++;
+
+            if (categoriaclick >= 1 && txtCategoria.Text == "Categoria")
+            {
+                txtCategoria.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtPrecio_Click(object sender, EventArgs e)
+        {
+            precioclick++;
+
+            if (precioclick >= 1 && txtPrecio.Text == "Precio")
+            {
+                txtPrecio.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtStock_Click(object sender, EventArgs e)
+        {
+            stockclick++;
+
+            if (stockclick >= 1 && txtStock.Text == "Stock")
+            {
+                txtStock.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtCodigo_KeyDown(object sender, KeyEventArgs e)
+        {
+            codigoclick++;
+
+            if (codigoclick >= 1 && txtCodigo.Text == "Codigo")
+            {
+                txtCodigo.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtNombre_KeyDown(object sender, KeyEventArgs e)
+        {
+            nombreclick++;
+
+            if (nombreclick >= 1 && txtNombre.Text == "Nombre")
+            {
+                txtNombre.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtMarca_KeyDown(object sender, KeyEventArgs e)
+        {
+            marcaclick++;
+
+            if (marcaclick >= 1 && txtMarca.Text == "Marca")
+            {
+                txtMarca.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtCategoria_KeyDown(object sender, KeyEventArgs e)
+        {
+            categoriaclick++;
+
+            if (categoriaclick >= 1 && txtCategoria.Text == "Categoria")
+            {
+                txtCategoria.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtPrecio_KeyDown(object sender, KeyEventArgs e)
+        {
+            precioclick++;
+
+            if (precioclick >= 1 && txtPrecio.Text == "Precio")
+            {
+                txtPrecio.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtStock_KeyDown(object sender, KeyEventArgs e)
+        {
+            stockclick++;
+
+            if (stockclick >= 1 && txtStock.Text == "Stock")
+            {
+                txtStock.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y la tecla de borrar (Backspace)
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+
+            // Limitar a 20 caracteres
+            if (txtCodigo.Text.Length >= 20 && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras, números, espacios y la tecla de borrar (Backspace)
+            e.Handled = !(Char.IsLetterOrDigit(e.KeyChar) || Char.IsWhiteSpace(e.KeyChar) || e.KeyChar == 8);
+
+            // Limitar a 20 caracteres
+            if (txtNombre.Text.Length >= 20 && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras y la tecla de borrar (Backspace)
+            e.Handled = !(Char.IsLetter(e.KeyChar) || e.KeyChar == 8);
+
+            // Limitar a 20 caracteres
+            if (txtMarca.Text.Length >= 20 && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txtCategoria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras y la tecla de borrar (Backspace)
+            e.Handled = !(Char.IsLetter(e.KeyChar) || e.KeyChar == 8);
+
+            // Limitar a 20 caracteres
+            if (txtMarca.Text.Length >= 20 && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y la tecla de borrar (Backspace)
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+
+            // Limitar a 9 caracteres
+            if (txtPrecio.Text.Length >= 9 && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y la tecla de borrar (Backspace)
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+
+            // Limitar a 9 caracteres
+            if (txtStock.Text.Length >= 9 && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCodigo_Leave(object sender, EventArgs e)
+        {
+            if (txtCodigo.Text == "")
+            {
+                txtCodigo.Text = "Codigo";
+                txtCodigo.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtNombre_Leave(object sender, EventArgs e)
+        {
+            if (txtNombre.Text == "")
+            {
+                txtNombre.Text = "Nombre";
+                txtNombre.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtMarca_Leave(object sender, EventArgs e)
+        {
+            if (txtMarca.Text == "")
+            {
+                txtMarca.Text = "Marca";
+                txtMarca.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtCategoria_Leave(object sender, EventArgs e)
+        {
+            if (txtCategoria.Text == "")
+            {
+                txtCategoria.Text = "Categoria";
+                txtCategoria.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtPrecio_Leave(object sender, EventArgs e)
+        {
+            if (txtPrecio.Text == "")
+            {
+                txtPrecio.Text = "Precio";
+                txtPrecio.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtStock_Leave(object sender, EventArgs e)
+        {
+            if (txtStock.Text == "")
+            {
+                txtStock.Text = "Stock";
+                txtStock.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            codigoclick++;
+            txtCodigo.ForeColor = Color.Black;
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            nombreclick++;
+            txtNombre.ForeColor = Color.Black;
+        }
+
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+            marcaclick++;
+            txtMarca.ForeColor = Color.Black;
+        }
+
+        private void txtCategoria_TextChanged(object sender, EventArgs e)
+        {
+            categoriaclick++;
+            txtCategoria.ForeColor = Color.Black;
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+            precioclick++;
+            txtPrecio.ForeColor = Color.Black;
+        }
+
+        private void txtStock_TextChanged(object sender, EventArgs e)
+        {
+            stockclick++;
+            txtStock.ForeColor = Color.Black;
+        }
+
+        private void FormAdmProductos_Click(object sender, EventArgs e)
+        {
+            lblCarga.Focus();
+        }
+
+        private void panelCarga_Click(object sender, EventArgs e)
+        {
+            lblCarga.Focus();
         }
     }
 }
