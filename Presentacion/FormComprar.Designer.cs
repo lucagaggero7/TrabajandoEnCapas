@@ -70,6 +70,8 @@
             this.lblCampo4 = new System.Windows.Forms.Label();
             this.errorProvincia = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorLocalidad = new System.Windows.Forms.ErrorProvider(this.components);
+            this.progressFin = new System.Windows.Forms.ProgressBar();
+            this.timerCarga = new System.Windows.Forms.Timer(this.components);
             this.PanelBarraTitulo.SuspendLayout();
             this.panelNombre.SuspendLayout();
             this.panelDireccion.SuspendLayout();
@@ -438,6 +440,7 @@
             this.rtbCampos.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbCampos.Location = new System.Drawing.Point(40, 456);
             this.rtbCampos.Name = "rtbCampos";
+            this.rtbCampos.ReadOnly = true;
             this.rtbCampos.Size = new System.Drawing.Size(154, 26);
             this.rtbCampos.TabIndex = 60;
             this.rtbCampos.Text = "* Campos Obligatorios";
@@ -574,11 +577,23 @@
             // 
             this.errorLocalidad.ContainerControl = this;
             // 
+            // progressFin
+            // 
+            this.progressFin.Location = new System.Drawing.Point(539, 456);
+            this.progressFin.Name = "progressFin";
+            this.progressFin.Size = new System.Drawing.Size(199, 23);
+            this.progressFin.TabIndex = 70;
+            // 
+            // timerCarga
+            // 
+            this.timerCarga.Tick += new System.EventHandler(this.timerCarga_Tick);
+            // 
             // FormComprar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 489);
+            this.Controls.Add(this.progressFin);
             this.Controls.Add(this.lblCampo4);
             this.Controls.Add(this.lblCampo3);
             this.Controls.Add(this.panelProvincia);
@@ -621,6 +636,7 @@
             this.Controls.SetChildIndex(this.panelProvincia, 0);
             this.Controls.SetChildIndex(this.lblCampo3, 0);
             this.Controls.SetChildIndex(this.lblCampo4, 0);
+            this.Controls.SetChildIndex(this.progressFin, 0);
             this.PanelBarraTitulo.ResumeLayout(false);
             this.panelNombre.ResumeLayout(false);
             this.panelNombre.PerformLayout();
@@ -692,5 +708,7 @@
         private System.Windows.Forms.ErrorProvider errorProvincia;
         private System.Windows.Forms.ErrorProvider errorLocalidad;
         private System.Windows.Forms.ComboBox txtProvincia;
+        private System.Windows.Forms.ProgressBar progressFin;
+        private System.Windows.Forms.Timer timerCarga;
     }
 }

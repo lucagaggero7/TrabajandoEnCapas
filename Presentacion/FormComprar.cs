@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Presentacion
@@ -22,9 +23,14 @@ namespace Presentacion
         int telefonoclick = 0;
         int dniclick = 0;
         //
+
+        
+
         public FormComprar()
         {
             InitializeComponent();
+            timerCarga.Interval = 600;
+            progressFin.Maximum = 100;
         }
 
         private void FormComprar_Load(object sender, EventArgs e)
@@ -184,11 +190,8 @@ namespace Presentacion
                 // ...
             }
 
-            FormFin frm6 = new FormFin();
-            frm6.Owner = this;
-            frm6.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
-            this.Hide();
 
+            timerCarga.Start();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -574,5 +577,29 @@ namespace Presentacion
         {
             FormComprar_Click(sender, e);
         }
+
+        private void timerCarga_Tick(object sender, EventArgs e)
+        {
+           
+
+            if (progressFin.Value < 95)
+            {
+                progressFin.Increment(10);
+                progressFin.Update();
+            }
+            else
+            {
+                timerCarga.Stop(); // Detener el Timer cuando llegue al valor máximo
+                               // Ejecuta el código deseado (por ejemplo, mostrar FormFin)
+                    FormFin frm6 = new FormFin();
+                    frm6.Owner = this;
+                    frm6.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
+                    this.Hide();
+            }
+
+        }
     }
 }
+
+
+
