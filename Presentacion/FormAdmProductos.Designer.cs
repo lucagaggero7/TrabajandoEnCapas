@@ -31,8 +31,8 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnCargar = new System.Windows.Forms.Button();
             this.datagridProductos = new System.Windows.Forms.DataGridView();
@@ -86,7 +86,7 @@ namespace Presentacion
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigo.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.ForeColor = System.Drawing.Color.DarkGray;
             this.txtCodigo.Location = new System.Drawing.Point(19, 50);
             this.txtCodigo.Name = "txtCodigo";
@@ -101,13 +101,15 @@ namespace Presentacion
             // 
             // btnCargar
             // 
-            this.btnCargar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargar.Location = new System.Drawing.Point(88, 316);
+            this.btnCargar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(25)))), ((int)(((byte)(67)))));
+            this.btnCargar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargar.ForeColor = System.Drawing.Color.White;
+            this.btnCargar.Location = new System.Drawing.Point(75, 316);
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(80, 27);
             this.btnCargar.TabIndex = 1;
-            this.btnCargar.Text = "Cargar";
-            this.btnCargar.UseVisualStyleBackColor = true;
+            this.btnCargar.Text = "CARGAR";
+            this.btnCargar.UseVisualStyleBackColor = false;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
             // datagridProductos
@@ -123,24 +125,24 @@ namespace Presentacion
             this.datagridProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.datagridProductos.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.datagridProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.NullValue = "null";
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.NullValue = "null";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datagridProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridProductos.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridProductos.DefaultCellStyle = dataGridViewCellStyle2;
             this.datagridProductos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.datagridProductos.EnableHeadersVisualStyles = false;
             this.datagridProductos.GridColor = System.Drawing.Color.DarkGray;
@@ -157,7 +159,7 @@ namespace Presentacion
             // 
             // txtNombre
             // 
-            this.txtNombre.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.ForeColor = System.Drawing.Color.DarkGray;
             this.txtNombre.Location = new System.Drawing.Point(19, 83);
             this.txtNombre.Name = "txtNombre";
@@ -180,29 +182,32 @@ namespace Presentacion
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBorrar.Location = new System.Drawing.Point(260, 316);
+            this.btnBorrar.BackColor = System.Drawing.Color.Black;
+            this.btnBorrar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBorrar.ForeColor = System.Drawing.Color.White;
+            this.btnBorrar.Location = new System.Drawing.Point(247, 316);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(80, 27);
             this.btnBorrar.TabIndex = 8;
-            this.btnBorrar.Text = "Borrar";
-            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Text = "BORRAR";
+            this.btnBorrar.UseVisualStyleBackColor = false;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(174, 316);
+            this.btnBuscar.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(25)))), ((int)(((byte)(67)))));
+            this.btnBuscar.Location = new System.Drawing.Point(161, 316);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(80, 27);
             this.btnBuscar.TabIndex = 9;
-            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtStock
             // 
-            this.txtStock.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStock.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStock.ForeColor = System.Drawing.Color.DarkGray;
             this.txtStock.Location = new System.Drawing.Point(161, 115);
             this.txtStock.Name = "txtStock";
@@ -217,7 +222,7 @@ namespace Presentacion
             // 
             // txtCategoria
             // 
-            this.txtCategoria.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategoria.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCategoria.ForeColor = System.Drawing.Color.DarkGray;
             this.txtCategoria.Location = new System.Drawing.Point(161, 50);
             this.txtCategoria.Name = "txtCategoria";
@@ -232,7 +237,7 @@ namespace Presentacion
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecio.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecio.ForeColor = System.Drawing.Color.DarkGray;
             this.txtPrecio.Location = new System.Drawing.Point(161, 83);
             this.txtPrecio.Name = "txtPrecio";
@@ -247,7 +252,7 @@ namespace Presentacion
             // 
             // txtMarca
             // 
-            this.txtMarca.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMarca.Font = new System.Drawing.Font("Open Sans SemiBold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMarca.ForeColor = System.Drawing.Color.DarkGray;
             this.txtMarca.Location = new System.Drawing.Point(19, 115);
             this.txtMarca.Name = "txtMarca";
@@ -297,7 +302,7 @@ namespace Presentacion
             // 
             // panelCarga
             // 
-            this.panelCarga.BackColor = System.Drawing.Color.SkyBlue;
+            this.panelCarga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(25)))), ((int)(((byte)(67)))));
             this.panelCarga.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelCarga.Controls.Add(this.lblCarga);
             this.panelCarga.Controls.Add(this.txtCodigo);
@@ -306,7 +311,7 @@ namespace Presentacion
             this.panelCarga.Controls.Add(this.txtStock);
             this.panelCarga.Controls.Add(this.txtPrecio);
             this.panelCarga.Controls.Add(this.txtCategoria);
-            this.panelCarga.Location = new System.Drawing.Point(12, 113);
+            this.panelCarga.Location = new System.Drawing.Point(40, 113);
             this.panelCarga.Name = "panelCarga";
             this.panelCarga.Size = new System.Drawing.Size(287, 158);
             this.panelCarga.TabIndex = 54;
@@ -316,37 +321,38 @@ namespace Presentacion
             // 
             this.lblCarga.AutoSize = true;
             this.lblCarga.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarga.ForeColor = System.Drawing.Color.White;
             this.lblCarga.Location = new System.Drawing.Point(13, 0);
             this.lblCarga.Name = "lblCarga";
-            this.lblCarga.Size = new System.Drawing.Size(214, 35);
+            this.lblCarga.Size = new System.Drawing.Size(231, 35);
             this.lblCarga.TabIndex = 64;
-            this.lblCarga.Text = "CARGA DE PRODUCTOS";
+            this.lblCarga.Text = "GESTIÓN DE PRODUCTOS";
             // 
             // FormAdmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 406);
+            this.Controls.Add(this.btnCargar);
+            this.Controls.Add(this.btnBorrar);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panelCarga);
             this.Controls.Add(this.btnCerrarSesion);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.datagridProductos);
-            this.Controls.Add(this.btnCargar);
             this.Name = "FormAdmProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdmProductos";
             this.Load += new System.EventHandler(this.FormAdmProductos_Load);
             this.Click += new System.EventHandler(this.FormAdmProductos_Click);
-            this.Controls.SetChildIndex(this.btnCargar, 0);
             this.Controls.SetChildIndex(this.datagridProductos, 0);
             this.Controls.SetChildIndex(this.lblMensaje, 0);
-            this.Controls.SetChildIndex(this.btnBorrar, 0);
-            this.Controls.SetChildIndex(this.btnBuscar, 0);
             this.Controls.SetChildIndex(this.PanelBarraTitulo, 0);
             this.Controls.SetChildIndex(this.btnCerrarSesion, 0);
             this.Controls.SetChildIndex(this.panelCarga, 0);
+            this.Controls.SetChildIndex(this.btnBuscar, 0);
+            this.Controls.SetChildIndex(this.btnBorrar, 0);
+            this.Controls.SetChildIndex(this.btnCargar, 0);
             this.PanelBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorCodigo)).EndInit();
