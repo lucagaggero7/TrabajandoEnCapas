@@ -201,6 +201,8 @@ namespace Presentacion
         private void FormComprar_Click(object sender, EventArgs e)
         {
             lblResumen.Focus();
+
+            this.ActiveControl = lblResumen;
         }
 
         private void txtNombre_Click(object sender, EventArgs e)
@@ -561,6 +563,16 @@ namespace Presentacion
         {
             direccionclick++;
             txtDireccion.ForeColor = Color.Black;
+        }
+
+        private void PanelBarraTitulo_MouseDown_1(object sender, MouseEventArgs e)
+        {
+           
+        }
+
+        private void txtProvincia_DropDownClosed(object sender, EventArgs e)
+        {
+            FormComprar_Click(sender, e);
         }
     }
 }

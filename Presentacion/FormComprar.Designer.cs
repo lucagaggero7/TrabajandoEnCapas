@@ -509,6 +509,7 @@
             this.txtProvincia.FormattingEnabled = true;
             this.txtProvincia.Items.AddRange(new object[] {
             "Provincia",
+            "",
             "Buenos Aires",
             "Ciudad Autónoma de Buenos Aires",
             "Catamarca",
@@ -539,6 +540,7 @@
             this.txtProvincia.TabIndex = 70;
             this.txtProvincia.DropDown += new System.EventHandler(this.txtProvincia_DropDown);
             this.txtProvincia.SelectionChangeCommitted += new System.EventHandler(this.txtProvincia_SelectionChangeCommitted);
+            this.txtProvincia.DropDownClosed += new System.EventHandler(this.txtProvincia_DropDownClosed);
             // 
             // lblCampo3
             // 

@@ -114,5 +114,10 @@ namespace Presentacion
             Owner.Show();
             this.Hide();
         }
+
+        private void PanelBarraTitulo_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            FormCarrito_Click(sender, e);
+        }
     }
 }

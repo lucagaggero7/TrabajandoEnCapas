@@ -78,15 +78,13 @@ namespace Presentacion
             //    MessageBox.Show("No hay profesionales cargados en el sistema");
         }
 
-
-        private void FormUsuario_Load(object sender, EventArgs e)
+        private void FormUsuarioBasic_Load(object sender, EventArgs e)
         {
             datagridProductosUser.ClearSelection();
             btnAgregar.Visible = false;
         }
 
-
-        private void FormUsuario_Click(object sender, EventArgs e)
+        private void FormUsuarioBasic_Click(object sender, EventArgs e)
         {
             datagridProductosUser.ClearSelection();
 
@@ -99,6 +97,7 @@ namespace Presentacion
             lblCategoria.Focus();
             //
         }
+
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -712,7 +711,7 @@ namespace Presentacion
             txtPrecioMax_Leave(sender, e);
 
             //quitar focos
-            FormUsuario_Click(sender, e);
+            FormUsuarioBasic_Click(sender, e);
 
         }
 
@@ -792,5 +791,13 @@ namespace Presentacion
                 e.Handled = true; // Ignorar la entrada si ya hay 13 caracteres
             }
         }
+
+        private void PanelBarraTitulo_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            FormUsuarioBasic_Click(sender, e);
+
+        }
+
+       
     }
 }

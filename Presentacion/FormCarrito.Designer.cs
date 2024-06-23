@@ -50,6 +50,10 @@
             this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             // 
+            // PanelBarraTitulo
+            // 
+            this.PanelBarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelBarraTitulo_MouseDown_1);
+            // 
             // btnMinimizar
             // 
             this.btnMinimizar.FlatAppearance.BorderSize = 0;

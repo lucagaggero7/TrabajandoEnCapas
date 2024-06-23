@@ -656,11 +656,23 @@ namespace Presentacion
         private void FormAdmProductos_Click(object sender, EventArgs e)
         {
             lblCarga.Focus();
+            datagridProductos.ClearSelection();
         }
 
         private void panelCarga_Click(object sender, EventArgs e)
         {
             lblCarga.Focus();
+            datagridProductos.ClearSelection();
+        }
+
+        private void PanelBarraTitulo_Click(object sender, EventArgs e)
+        {
+            datagridProductos.ClearSelection();
+        }
+
+        private void PanelBarraTitulo_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            FormAdmProductos_Click(sender, e);
         }
     }
 }
