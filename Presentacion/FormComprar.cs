@@ -166,9 +166,16 @@ namespace Presentacion
             // Verifica si la longitud está fuera del rango permitido
             if (digitsOnly.Length < 8 || digitsOnly.Length > 15)
             {
-                // Maneja el caso de longitud inválida, por ejemplo, mostrando un mensaje de error
-                errorTelefono.SetError(panelTelefono, "Debe ingresar un telefono valido");
-                return;
+                if (txtTelefono.Text != "Telefono (8 a 15 digitos)")
+                {
+                    // Maneja el caso de longitud inválida, por ejemplo, mostrando un mensaje de error
+                    errorTelefono.SetError(panelTelefono, "Debe ingresar un telefono valido");
+                    return;
+                }
+                else
+                {
+                    errorTelefono.Clear();
+                }
             }
             else
             {
