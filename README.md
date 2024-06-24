@@ -5,6 +5,5 @@ en este proyecto es importante crear una nueva base de datos local ya sea con ac
 ----------
 ATENCION 
 --------
-LOGIN USUARIO: usuario, 1234
 LOGIN ADMIN: admin, admin
 
