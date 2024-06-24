@@ -13,10 +13,11 @@ namespace Negocios
     {
         DatosProductos objDatosProductos = new DatosProductos();
 
+        DatosUsuarios objDatosUsuarios = new DatosUsuarios();
 
-        public int abmProdcutos(string accion, Producto objProfesional)
+        public int abmProdcutos(string accion, Producto objProducto)
         {
-            return objDatosProductos.abmProductos(accion, objProfesional);
+            return objDatosProductos.abmProductos(accion, objProducto);
         }
         public DataTable listadoProductos(string cual)
         {
@@ -29,15 +30,21 @@ namespace Negocios
         }
 
 
-        public object BuscarProducto(Producto objProfesional)
+        public object BuscarProducto(Producto objProducto)
         {
-            return objDatosProductos.BuscarProducto(objProfesional);
+            return objDatosProductos.BuscarProducto(objProducto);
         }
 
         public DataTable BuscarFiltros()
         {
             return objDatosProductos.BuscarFiltros();
         }
+
+        public int Compra(string accion, Usuario objUsuario, string listaProuductos)
+        {
+            return objDatosUsuarios.Compra(accion, objUsuario, listaProuductos);
+        }
+
 
     }
 

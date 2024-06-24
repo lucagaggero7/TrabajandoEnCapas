@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Negocios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +26,13 @@ namespace Presentacion
         int dniclick = 0;
         //
 
-        
+        public string accion;
+
+        public Usuario objEntUsuario = new Usuario();
+
+        public Carrito carrito = new Carrito();
+
+        public NegProductos objNegProductos = new NegProductos();
 
         public FormComprar()
         {
@@ -46,6 +54,16 @@ namespace Presentacion
 
                 // Formatea la cadena para el ítem del ListBox y lo añade
                 listResumen.Items.Add($"{nombre}, {marca}, ${precio}");
+            }
+
+            // Asumiendo que 'dataGridView' es tu DataGridView y 'listBox' es tu ListBox
+            foreach (DataGridViewRow row in ((FormCarrito)Owner).datagridCarrito.Rows)
+            {
+                // Obtiene los valores de las columnas específicas
+                string codigo = row.Cells["Codigo"].Value?.ToString() ?? string.Empty;
+
+                // Formatea la cadena para el ítem del ListBox y lo añade
+                listCarrito.Items.Add($"{codigo}");
             }
 
             lblSubtotal.Text = $"Productos: {listResumen.Items.Count}";
@@ -95,6 +113,20 @@ namespace Presentacion
 
             txtProvincia.SelectedItem = "Provincia";
 
+        }
+
+        private void TxtBox_a_Clase(string accion) //Prepara el objeto a enviar a la capa de Negocio
+        {
+            if (accion == "Comprar")
+            {
+                objEntUsuario.Nombre = txtNombre.Text;
+                objEntUsuario.Direccion = txtDireccion.Text;
+                objEntUsuario.Provincia = txtProvincia.Text;
+                objEntUsuario.Localidad = txtLocalidad.Text;
+                objEntUsuario.CodPostal = int.Parse(txtCodPostal.Text);
+                objEntUsuario.Telefono = Int64.Parse(txtTelefono.Text);
+                objEntUsuario.Dni = int.Parse(txtDni.Text);
+            }
         }
 
         private void btnComprar_Click(object sender, EventArgs e)
@@ -175,6 +207,7 @@ namespace Presentacion
                 else
                 {
                     errorTelefono.Clear();
+                    txtTelefono.Text = "0";
                 }
             }
             else
@@ -199,6 +232,58 @@ namespace Presentacion
 
 
             timerCarga.Start();
+        }
+
+        private void timerCarga_Tick(object sender, EventArgs e)
+        {
+
+
+            if (progressFin.Value < 95)
+            {
+                progressFin.Increment(10);
+                progressFin.Update();
+            }
+            else
+            {
+                timerCarga.Stop(); // Detener el Timer cuando llegue al valor máximo
+                                   // Ejecuta el código deseado (por ejemplo, mostrar FormFin)
+
+                FormFin frm6 = new FormFin();
+                frm6.Owner = this;
+                frm6.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
+                this.Hide();
+
+                accion = "Comprar";
+                TxtBox_a_Clase(accion);
+
+                int nComprados = -1;
+
+
+                // Diccionario para rastrear las repeticiones
+                Dictionary<string, int> repetitions = new Dictionary<string, int>();
+
+                // Recorre todos los elementos en la listResumen
+                foreach (var item in listCarrito.Items)
+                {
+                    string itemString = item.ToString(); // Asegúrate de convertir el objeto a string
+                    if (repetitions.ContainsKey(itemString))
+                    {
+                        repetitions[itemString]++;
+                    }
+                    else
+                    {
+                        repetitions[itemString] = 1;
+                    }
+                }
+
+                // Construye el string de salida sin paréntesis alrededor del número de repeticiones
+                string listaProductos = string.Join(", ", repetitions.Select(kv => $"{kv.Key} {kv.Value}"));
+
+                //lblPrueba.Text = listaProductos;
+                nComprados = objNegProductos.Compra("Comprar", objEntUsuario, listaProductos); //invoco a la capa de negocio
+
+            }
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -500,7 +585,10 @@ namespace Presentacion
         // Método para validar un nombre y apellido (ajusta según tus necesidades)
         private bool EsNombreValido(string nombre)
         {
-            // Ejemplo: verifica si hay al menos dos palabras separadas por espacio
+            // Elimina espacios en blanco al principio y al final
+            nombre = nombre.Trim();
+
+            // Verifica si hay al menos dos palabras separadas por espacio
             return System.Text.RegularExpressions.Regex.IsMatch(nombre, @"^[A-Za-z]+(?:\s[A-Za-z]+)+$");
         }
 
@@ -585,26 +673,7 @@ namespace Presentacion
             FormComprar_Click(sender, e);
         }
 
-        private void timerCarga_Tick(object sender, EventArgs e)
-        {
-           
-
-            if (progressFin.Value < 95)
-            {
-                progressFin.Increment(10);
-                progressFin.Update();
-            }
-            else
-            {
-                timerCarga.Stop(); // Detener el Timer cuando llegue al valor máximo
-                               // Ejecuta el código deseado (por ejemplo, mostrar FormFin)
-                    FormFin frm6 = new FormFin();
-                    frm6.Owner = this;
-                    frm6.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
-                    this.Hide();
-            }
-
-        }
+      
     }
 }
 

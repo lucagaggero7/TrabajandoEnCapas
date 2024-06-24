@@ -61,7 +61,9 @@ namespace Presentacion
 
         private void LlenarDataGrid()
         {
-            datagridProductosUser.DataSource = objNegProductos.listadoProductosUserV("Todos");
+            datagridProductosUser.DataSource = objNegProductos.listadoProductos("Todos");
+            // Oculta la columna "codigo"
+            datagridProductosUser.Columns["Codigo"].Visible = false;
 
             //datagridProductosUser.Rows.Clear();
             //DataSet ds = new DataSet();
@@ -103,9 +105,18 @@ namespace Presentacion
         {
             if (datagridProductosUser.SelectedRows.Count > 0)
             {
-                var row = ((DataRowView)datagridProductosUser.SelectedRows[0].DataBoundItem).Row;
-                carrito.AgregarProducto(row);
-                MessageBox.Show("Prodcuto agregado al carrito");
+                // Verifica la cantidad de filas en la tabla "Productos"
+                if (carrito.Productos.Rows.Count == 10)
+                {
+                    MessageBox.Show("¡Error! El carrito ya contiene el maximo de 10 productos.");
+                }
+                else
+                {
+                    MessageBox.Show("Producto agregado al carrito");
+                    var row = ((DataRowView)datagridProductosUser.SelectedRows[0].DataBoundItem).Row;
+                    carrito.AgregarProducto(row);
+                }
+
                 datagridProductosUser.ClearSelection();
             }
             else

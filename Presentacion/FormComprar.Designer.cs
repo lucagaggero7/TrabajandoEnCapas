@@ -72,6 +72,7 @@
             this.errorLocalidad = new System.Windows.Forms.ErrorProvider(this.components);
             this.progressFin = new System.Windows.Forms.ProgressBar();
             this.timerCarga = new System.Windows.Forms.Timer(this.components);
+            this.listCarrito = new System.Windows.Forms.ListBox();
             this.PanelBarraTitulo.SuspendLayout();
             this.panelNombre.SuspendLayout();
             this.panelDireccion.SuspendLayout();
@@ -437,12 +438,14 @@
             // 
             this.rtbCampos.BackColor = System.Drawing.Color.Azure;
             this.rtbCampos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbCampos.Enabled = false;
             this.rtbCampos.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbCampos.Location = new System.Drawing.Point(40, 456);
             this.rtbCampos.Name = "rtbCampos";
             this.rtbCampos.ReadOnly = true;
             this.rtbCampos.Size = new System.Drawing.Size(154, 26);
             this.rtbCampos.TabIndex = 60;
+            this.rtbCampos.TabStop = false;
             this.rtbCampos.Text = "* Campos Obligatorios";
             // 
             // lblCampo1
@@ -588,11 +591,25 @@
             // 
             this.timerCarga.Tick += new System.EventHandler(this.timerCarga_Tick);
             // 
+            // listCarrito
+            // 
+            this.listCarrito.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listCarrito.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listCarrito.FormattingEnabled = true;
+            this.listCarrito.ItemHeight = 17;
+            this.listCarrito.Location = new System.Drawing.Point(380, 299);
+            this.listCarrito.Name = "listCarrito";
+            this.listCarrito.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listCarrito.Size = new System.Drawing.Size(332, 70);
+            this.listCarrito.TabIndex = 65;
+            this.listCarrito.Visible = false;
+            // 
             // FormComprar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 489);
+            this.Controls.Add(this.listCarrito);
             this.Controls.Add(this.progressFin);
             this.Controls.Add(this.lblCampo4);
             this.Controls.Add(this.lblCampo3);
@@ -637,6 +654,7 @@
             this.Controls.SetChildIndex(this.lblCampo3, 0);
             this.Controls.SetChildIndex(this.lblCampo4, 0);
             this.Controls.SetChildIndex(this.progressFin, 0);
+            this.Controls.SetChildIndex(this.listCarrito, 0);
             this.PanelBarraTitulo.ResumeLayout(false);
             this.panelNombre.ResumeLayout(false);
             this.panelNombre.PerformLayout();
@@ -710,5 +728,6 @@
         private System.Windows.Forms.ComboBox txtProvincia;
         private System.Windows.Forms.ProgressBar progressFin;
         private System.Windows.Forms.Timer timerCarga;
+        private System.Windows.Forms.ListBox listCarrito;
     }
 }

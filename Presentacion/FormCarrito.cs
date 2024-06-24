@@ -24,6 +24,8 @@ namespace Presentacion
         private void FormCarrito_Load(object sender, EventArgs e)
         {
             datagridCarrito.DataSource = carrito.Productos;
+            // Oculta la columna "codigo"
+            datagridCarrito.Columns["codigo"].Visible = false;
 
             decimal total = carrito.Productos.AsEnumerable().Sum(x => Convert.ToDecimal(x["Precio"]));
             lblTotal.Text = "EL TOTAL ES: " + total.ToString("C2");
@@ -105,6 +107,7 @@ namespace Presentacion
             FormComprar frm5 = new FormComprar();
             frm5.Owner = this;
             frm5.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
+            
 
             this.Hide();
         }

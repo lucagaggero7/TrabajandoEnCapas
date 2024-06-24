@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.OleDb;
 using Entidades;
 using System.Security.Cryptography;
+using System.Web.Script.Serialization; // Necesario para la serialización JSON
 
 namespace Datos
 {
@@ -175,7 +176,7 @@ namespace Datos
 
             return dataTableFiltro;
             
-        } 
+        }
 
     }
 }
