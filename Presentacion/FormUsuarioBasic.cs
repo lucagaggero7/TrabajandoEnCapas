@@ -325,6 +325,45 @@ namespace Presentacion
                 datagridProductosUser.DataSource = filterBs;
             }
 
+            //////////
+            ///filtrar por precio menor y mayor cuando precio min esta ingresado y precio max tambien
+            ///pero no hay categoria ni marca ingresada
+            if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max" && txtPrecioMin.Text != ""
+                && txtPrecioMin.Text != "Min" && txtMarca.Text == "" && txtCategoria.Text == "")
+            {
+
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Precio >= {0} AND Precio <= {1}",
+                                                txtPrecioMin.Text, txtPrecioMax.Text);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            ///filtrar por categoria marca y precio minimo y maximo cuando todos los campos estan llenos
+            if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max" && txtPrecioMin.Text != ""
+                && txtPrecioMin.Text != "Min" && txtMarca.Text != "" && txtCategoria.Text != "")
+            {
+
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%' AND Precio >= {2} AND Precio <= {3}",
+                                                txtCategoria.Text, txtMarca.Text, txtPrecioMin.Text, txtPrecioMax.Text);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            ///filtrar por categoria y precio solo si estos 3 valores estan ingresados
+            if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max" && txtPrecioMin.Text != ""
+                && txtPrecioMin.Text != "Min" && txtMarca.Text == "" && txtCategoria.Text != "")
+            {
+
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Categoria like '%{0}%' AND Precio >= {1} AND Precio <= {2}",
+                                                txtCategoria.Text, txtPrecioMin.Text, txtPrecioMax.Text);
+                datagridProductosUser.DataSource = filterBs;
+            }
 
             //////////////
             if (txtCategoria.Text == "" && txtMarca.Text != "" && txtPrecioMin.Text != "Min" && txtPrecioMax.Text == "Max")
@@ -403,6 +442,20 @@ namespace Presentacion
                 filterBs.DataSource = datagridProductosUser.DataSource;
                 filterBs.Filter = string.Format("Categoria like '%{0}%' AND Marca like '%{1}%'",
                                                 txtCategoria.Text, txtMarca.Text);
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            ///filtrar por precio menor y mayor cuando precio min esta ingresado y precio max tambien
+            ///pero no hay categoria ni marca ingresada
+            if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max" && txtPrecioMin.Text != ""
+                && txtPrecioMin.Text != "Min" && txtMarca.Text == "" && txtCategoria.Text == "")
+            {
+
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Precio >= {0} AND Precio <= {1}",
+                                                txtPrecioMin.Text, txtPrecioMax.Text);
                 datagridProductosUser.DataSource = filterBs;
             }
 
@@ -529,6 +582,20 @@ namespace Presentacion
                 BindingSource filterBs = new BindingSource();
                 filterBs.DataSource = datagridProductosUser.DataSource;
                 filterBs.Filter = string.Format("Marca like '%" + txtMarca.Text + "%'");
+                datagridProductosUser.DataSource = filterBs;
+            }
+
+            //////////
+            ///filtrar por precio menor y mayor cuando precio min esta ingresado y precio max tambien
+            ///pero no hay categoria ni marca ingresada
+            if (txtPrecioMax.Text != "" && txtPrecioMax.Text != "Max" && txtPrecioMin.Text != ""
+                && txtPrecioMin.Text != "Min" && txtMarca.Text == "" && txtCategoria.Text == "")
+            {
+
+                BindingSource filterBs = new BindingSource();
+                filterBs.DataSource = datagridProductosUser.DataSource;
+                filterBs.Filter = string.Format("Precio >= {0} AND Precio <= {1}",
+                                                txtPrecioMin.Text, txtPrecioMax.Text);
                 datagridProductosUser.DataSource = filterBs;
             }
 
