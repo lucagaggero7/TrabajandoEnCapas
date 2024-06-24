@@ -113,34 +113,6 @@ namespace Datos
             return dt;
         }
 
-        public DataTable listadoProductosUserV(string cual)
-        {
-            string orden = string.Empty;
-            if (cual == "Todos")
-                orden = "SELECT Nombre, Marca, Categoria, Precio, Stock FROM Productos ;";
-
-            OleDbCommand cmd = new OleDbCommand(orden, conexion);
-            DataTable dt = new DataTable();
-            OleDbDataAdapter da = new OleDbDataAdapter();
-            try
-            {
-                Abrirconexion();
-                cmd.ExecuteNonQuery();
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error al listar productos", e);
-            }
-            finally
-            {
-                Cerrarconexion();
-                cmd.Dispose();
-            }
-            return dt;
-        }
-
 
         public DataTable BuscarFiltros()
         {
