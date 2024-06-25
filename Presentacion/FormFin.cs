@@ -19,11 +19,10 @@ namespace Presentacion
 
         private void FormFin_Load(object sender, EventArgs e)
         {
-
-            // Divide el texto por espacios y toma la primera palabra
+            // Divide el texto para tomar el nombre
             string nombre = ((FormComprar)Owner).txtNombre.Text.Split(' ')[0];
 
-            // Asegúrate de que este código se ejecute en el contexto adecuado, por ejemplo, después de una compra exitosa
+            // Muestra un mensaje de felicitaciones junto al nombre en el label
             lblFin.Text = $"¡¡Felicitaciones por tu compra {nombre}!! \nVuelve pronto...";
         }
 
@@ -32,6 +31,7 @@ namespace Presentacion
             this.Hide(); // Oculta el formulario actual
             Owner.Owner.Owner.Show(); // Muestra el formulario padre
 
+            //Borra todos los productos del carrito ya finalizada la compra
             ((FormCarrito)Owner.Owner).carrito.Productos.Rows.Clear();
         }
     }

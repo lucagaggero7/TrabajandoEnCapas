@@ -82,12 +82,12 @@ namespace Presentacion
         private void LlenarDataGrid()
         {
             
-            datagridProductosUser.DataSource = objNegProductos.listadoProductos("Todos");
+            datagridProductosUser.DataSource = objNegProductos.ListadoProductos("Todos");
 
             
             //datagridProductosUser.Rows.Clear();
             //DataSet ds = new DataSet();
-            //ds = objNegProductos.listadoProductos("Todos");
+            //ds = objNegProductos.ListadoProductos("Todos");
             //if (ds.Tables[0].Rows.Count > 0)
             //{
             //    foreach (DataRow dr in ds.Tables[0].Rows)
@@ -115,7 +115,7 @@ namespace Presentacion
                 panelMenu.Visible = true;
 
 
-                datagridProductosUser.DataSource = objNegProductos.listadoProductos("Todos");
+                datagridProductosUser.DataSource = objNegProductos.ListadoProductos("Todos");
             
                 DataTableFiltros = objNegProductos.BuscarFiltros();
                 HashSet<string> categoriasUnicas = new HashSet<string>();

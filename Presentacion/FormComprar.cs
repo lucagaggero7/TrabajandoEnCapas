@@ -16,7 +16,6 @@ namespace Presentacion
 {
     public partial class FormComprar : FrmBase
     {
-
         //variables que cuentan los clicks de los textbox para simular placeholders
         int nombreclick = 0;
         int direccionclick = 0;
@@ -34,6 +33,8 @@ namespace Presentacion
 
         public NegProductos objNegProductos = new NegProductos();
 
+        public NegUsuarios objNegUsuarios = new NegUsuarios();
+
         public FormComprar()
         {
             InitializeComponent();
@@ -43,29 +44,27 @@ namespace Presentacion
 
         private void FormComprar_Load(object sender, EventArgs e)
         {
-            // Asumiendo que 'dataGridView' es tu DataGridView y 'listBox' es tu ListBox
+            // Trae los campos redundantes para la lista Resumen
             foreach (DataGridViewRow row in ((FormCarrito)Owner).datagridCarrito.Rows)
             {
-                // Obtiene los valores de las columnas específicas
                 string nombre = row.Cells["Nombre"].Value?.ToString() ?? string.Empty;
                 string marca = row.Cells["Marca"].Value?.ToString() ?? string.Empty;
-                // Omite la columna 'Stock'
                 string precio = row.Cells["Precio"].Value?.ToString() ?? string.Empty;
 
-                // Formatea la cadena para el ítem del ListBox y lo añade
+                // Formatea la cadena para el items de listResumen y lo añade
                 listResumen.Items.Add($"{nombre}, {marca}, ${precio}");
             }
 
-            // Asumiendo que 'dataGridView' es tu DataGridView y 'listBox' es tu ListBox
+            // Trae los campos redundantes para la lista Carrito (solo el codigo)
             foreach (DataGridViewRow row in ((FormCarrito)Owner).datagridCarrito.Rows)
             {
-                // Obtiene los valores de las columnas específicas
                 string codigo = row.Cells["Codigo"].Value?.ToString() ?? string.Empty;
 
-                // Formatea la cadena para el ítem del ListBox y lo añade
+                // Formatea la cadena para el items de listCarrito y lo añade
                 listCarrito.Items.Add($"{codigo}");
             }
 
+            //Calcula el subtotal
             lblSubtotal.Text = $"Productos: {listResumen.Items.Count}";
 
             decimal total = 0m;
@@ -87,11 +86,12 @@ namespace Presentacion
             lblNTotal.Text = "$" + totalConIVA.ToString("N2"); // Formatea y muestra el resultado
 
             decimal iva = total * 0.21m; // Calcula el 21% de IVA del total
-            lblIva.Text = "(IVA incluido $" + iva.ToString("N2") + ")"; // Formatea y muestra el IVA en el label
+            lblIva.Text = "(IVA incluido $" + iva.ToString("N2") + ")"; // Formatea y muestra el IVA
 
+            //Cuenta los productos del carrito
             lblProductos.Text = listResumen.Items.Count.ToString() + " Productos";
 
-            //Ejecutamos los evenetos leave para ahorrar lineas if
+            //Ejecutamos los evenetos leave para ahorrar repeticiones de codigo
             txtNombre_Leave(sender, e);
             txtDireccion_Leave(sender, e);
             txtLocalidad_Leave(sender, e);
@@ -102,17 +102,16 @@ namespace Presentacion
 
             //Sacamos el foco de los textbox para no generar bugs del cursor
             lblResumen.Focus();
-            //
-
             this.ActiveControl = lblResumen;
 
+            //Personalizamos el richtextbox Campos
             rtbCampos.Rtf = @"{\rtf1\ansi \cf1\b * \cf0\b0 Campos Obligatorios\par}";
             rtbCampos.Select(0, 1); // Selecciona solo el asterisco
             rtbCampos.SelectionColor = Color.Red; // Cambia el color del texto seleccionado a rojo
             rtbCampos.DeselectAll(); // Deselecciona el texto
 
+            //Simulamos un placeholder en el combobox Provincia
             txtProvincia.SelectedItem = "Provincia";
-
         }
 
         private void TxtBox_a_Clase(string accion) //Prepara el objeto a enviar a la capa de Negocio
@@ -132,112 +131,106 @@ namespace Presentacion
         private void btnComprar_Click(object sender, EventArgs e)
         {
             // Valida el nombre y apellido
-            if (!EsNombreValido(txtNombre.Text))
-            {
-                errorNombre.SetError(panelNombre, "Ingrese un nombre y apellido válidos.");
-                return;
-            }
-            else
+            if (EsNombreValido(txtNombre.Text))
             {
                 errorNombre.Clear(); // Limpia el mensaje de error si es válido
             }
-
-            // Valida la primera línea de una dirección
-            if (!EsDireccionValida(txtDireccion.Text))
+            else
             {
-                errorDireccion.SetError(panelDireccion, "Ingrese la primera línea de la dirección.");
+                // Setea el error y sale de la estructura
+                errorNombre.SetError(panelNombre, "Ingrese un nombre y apellido válidos.");
                 return;
             }
-            else
+
+            // Valida la direccion
+            if (EsDireccionValida(txtDireccion.Text))
             {
                 errorDireccion.Clear(); // Limpia el mensaje de error si es válido
             }
-
-            // Valida la provincia
-            if (txtProvincia.Text == "Provincia" || txtProvincia.Text == "")
+            else
             {
-                errorProvincia.SetError(panelProvincia, "Seleccione una provincia");
+                // Setea el error y sale de la estructura
+                errorDireccion.SetError(panelDireccion, "Ingrese la primera línea de la dirección.");
                 return;
             }
-            else
+
+            // Valida la provincia
+            if (txtProvincia.Text != "Provincia" || txtProvincia.Text != "")
             {
                 errorProvincia.Clear(); // Limpia el mensaje de error si es válido
             }
-
-            // Valida la Localidad
-            if (txtLocalidad.Text == "Localidad" || txtLocalidad.Text == "")
+            else
             {
-                errorLocalidad.SetError(panelLocalidad, "Ingrese una localidad valida");
+                // Setea el error y sale de la estructura
+                errorProvincia.SetError(panelProvincia, "Seleccione una provincia");
                 return;
             }
-            else
+
+            // Valida la Localidad
+            if (txtLocalidad.Text != "Localidad" || txtLocalidad.Text != "")
             {
                 errorLocalidad.Clear(); // Limpia el mensaje de error si es válido
             }
-
-
-            // Reemplaza 'EsCodigoPostalValido' con tu lógica de validación de códigos postales
-            if (!EsCodigoPostalValido(txtCodPostal.Text))
+            else
             {
-                // Muestra un mensaje de error si el código postal no es válido
+                // Setea el error y sale de la estructura
+                errorLocalidad.SetError(panelLocalidad, "Ingrese una localidad valida");
+                return;
+            }
+
+            // Valida el codigo postal
+            if (EsCodigoPostalValido(txtCodPostal.Text))
+            {
+                errorCodigoPostal.Clear(); // Limpia el mensaje de error si es válido
+            }
+            else
+            {
+                // Setea el error y sale de la estructura
                 errorCodigoPostal.SetError(panelCodPostal, "El código postal no es válido.");
                 return;
             }
-            else
-            {
-                // Limpia el mensaje de error si el código postal es válido
-                errorCodigoPostal.Clear();
-                // Procede con la lógica de compra
-                // ...
-            }
 
-
-            // Elimina todos los caracteres que no sean dígitos
+            // Elimina todos los caracteres de telefono que no sean numeros
             string digitsOnly = new String(txtTelefono.Text.Where(char.IsDigit).ToArray());
 
-            // Verifica si la longitud está fuera del rango permitido
+            // Verifica si la longitud del telefono está fuera del rango permitido
             if (digitsOnly.Length < 8 || digitsOnly.Length > 15)
             {
-                if (txtTelefono.Text != "Telefono (8 a 15 digitos)")
+                if (txtTelefono.Text == "Telefono (8 a 15 digitos)")
                 {
-                    // Maneja el caso de longitud inválida, por ejemplo, mostrando un mensaje de error
-                    errorTelefono.SetError(panelTelefono, "Debe ingresar un telefono valido");
-                    return;
+                    errorTelefono.Clear(); // Limpia el mensaje de error si es válido
+                    txtTelefono.Text = "0";
                 }
                 else
                 {
-                    errorTelefono.Clear();
-                    txtTelefono.Text = "0";
+                    // Setea el error y sale de la estructura
+                    errorTelefono.SetError(panelTelefono, "Debe ingresar un telefono valido");
+                    return;
                 }
             }
             else
             {
-                errorTelefono.Clear();
+                errorTelefono.Clear(); // Limpia el mensaje de error si es válido
             }
 
-            // Verifica si 'txtDni' tiene exactamente 8 dígitos numéricos
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtDni.Text, @"^\d{8}$"))
+            // Valida el Dni
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtDni.Text, @"^\d{8}$"))
             {
-                // Muestra un mensaje de error si 'txtDni' no tiene 8 dígitos
-                errorDni.SetError(panelDni, "El DNI debe tener 8 dígitos numéricos.");
-                return;
+                errorDni.Clear(); // Limpia el mensaje de error si es válido
             }
             else
             {
-                // Limpia el mensaje de error si 'txtDni' es válido
-                errorDni.Clear();
-                // Procede con la lógica de compra
-                // ...
+                // Setea el error y sale de la estructura
+                errorDni.SetError(panelDni, "El DNI debe tener 8 dígitos numéricos.");
+                return;
             }
 
-
+            // Inicia el timer para la barra de progreso
             timerCarga.Start();
         }
 
         private void timerCarga_Tick(object sender, EventArgs e)
         {
-
-
             if (progressFin.Value < 95)
             {
                 progressFin.Increment(10);
@@ -245,27 +238,27 @@ namespace Presentacion
             }
             else
             {
-                timerCarga.Stop(); // Detener el Timer cuando llegue al valor máximo
-                                   // Ejecuta el código deseado (por ejemplo, mostrar FormFin)
+                // Cuando se produce un tick en el timer
+                // y la barra de progreso llega a 95 detiene el timer
+                timerCarga.Stop(); 
 
-                FormFin frm6 = new FormFin();
-                frm6.Owner = this;
-                frm6.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
+                //Al detenerse el timer ejecuta la compra y muestra el form de finalizacion               
+                FormFin frm7 = new FormFin();
+                this.AddOwnedForm(frm7);
+                frm7.Show();
                 this.Hide();
 
                 accion = "Comprar";
                 TxtBox_a_Clase(accion);
 
                 int nComprados = -1;
-
-
                 // Diccionario para rastrear las repeticiones
                 Dictionary<string, int> repetitions = new Dictionary<string, int>();
 
-                // Recorre todos los elementos en la listResumen
+                // Recorre todos los elementos en la listCarrito
                 foreach (var item in listCarrito.Items)
                 {
-                    string itemString = item.ToString(); // Asegúrate de convertir el objeto a string
+                    string itemString = item.ToString();
                     if (repetitions.ContainsKey(itemString))
                     {
                         repetitions[itemString]++;
@@ -276,16 +269,13 @@ namespace Presentacion
                     }
                 }
 
-                // Construye el string de salida sin paréntesis alrededor del número de repeticiones
+                // Construye el string de salida con el número de repeticiones
                 string listaProductos = string.Join(", ", repetitions.Select(kv => $"{kv.Key} {kv.Value}"));
 
-                //lblPrueba.Text = listaProductos;
-                nComprados = objNegProductos.Compra("Comprar", objEntUsuario, listaProductos); //invoco a la capa de negocio
-
+                //Ejecuta el metodo que carga los datos de compra en la base de datos
+                nComprados = objNegUsuarios.Compra("Comprar", objEntUsuario, listaProductos); 
             }
-
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide(); // Oculta el formulario actual
@@ -295,15 +285,61 @@ namespace Presentacion
 
         private void FormComprar_Click(object sender, EventArgs e)
         {
+            // Cambia los focos para evitar bugs en los controles
             lblResumen.Focus();
-
             this.ActiveControl = lblResumen;
+        }
+
+        private void txtProvincia_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            txtProvincia.ForeColor = Color.Black;
+
+            // Quita el highlight bugeado del combobox
+            this.ActiveControl = null;
+        }
+
+        private void txtProvincia_DropDown(object sender, EventArgs e)
+        {
+            // Quita el item que simula el placeholder en el combobox de Provincias
+            // una vez que este se abre por primera vez
+            txtProvincia.Items.Remove("Provincia");
+
+            txtProvincia.ForeColor = Color.Black;
+        }
+
+        private void txtProvincia_DropDownClosed(object sender, EventArgs e)
+        {
+            FormComprar_Click(sender, e);
+        }
+
+        // Valida el nombre y le quita los espacios en blanco
+        private bool EsNombreValido(string nombre)
+        {
+            nombre = nombre.Trim();
+
+            return System.Text.RegularExpressions.Regex.IsMatch(nombre, @"^[A-Za-z]+(?:\s[A-Za-z]+)+$");
+        }
+
+        // Valida la direccion
+        private bool EsDireccionValida(string direccion)
+        {
+            if (txtDireccion.Text == "Direccion")
+            {
+                return false;
+            }
+
+            return System.Text.RegularExpressions.Regex.IsMatch(direccion, @"^[A-Za-z0-9\s.,'-]+$");
+        }
+
+        // Valida el codigo postal entre 4 y 6 dígitos
+        private bool EsCodigoPostalValido(string codPostal)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(codPostal, @"^\d{4,6}$");
         }
 
         private void txtNombre_Click(object sender, EventArgs e)
         {
             nombreclick++;
-
             if (nombreclick >= 1 && txtNombre.Text == "Nombre(s) y Apellido")
             {
                 txtNombre.Text = "";
@@ -314,10 +350,22 @@ namespace Presentacion
             }
         }
 
+        private void txtDireccion_Click(object sender, EventArgs e)
+        {
+            direccionclick++;
+            if (direccionclick >= 1 && txtDireccion.Text == "Direccion")
+            {
+                txtDireccion.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
         private void txtLocalidad_Click(object sender, EventArgs e)
         {
             localidadclick++;
-
             if (localidadclick >= 1 && txtLocalidad.Text == "Localidad")
             {
                 txtLocalidad.Text = "";
@@ -331,7 +379,6 @@ namespace Presentacion
         private void txtCodPostal_Click(object sender, EventArgs e)
         {
             codpostalclick++;
-
             if (codpostalclick >= 1 && txtCodPostal.Text == "Codigo Postal")
             {
                 txtCodPostal.Text = "";
@@ -340,13 +387,11 @@ namespace Presentacion
             {
                 return;
             }
-
         }
 
         private void txtTelefono_Click(object sender, EventArgs e)
         {
             telefonoclick++;
-
             if (telefonoclick >= 1 && txtTelefono.Text == "Telefono (8 a 15 digitos)")
             {
                 txtTelefono.Text = "";
@@ -360,7 +405,6 @@ namespace Presentacion
         private void txtDni_Click(object sender, EventArgs e)
         {
             dniclick++;
-
             if (dniclick >= 1 && txtDni.Text == "DNI (ej. 12345678)")
             {
                 txtDni.Text = "";
@@ -375,6 +419,12 @@ namespace Presentacion
         {
             nombreclick++;
             txtNombre.ForeColor = Color.Black;
+        }
+
+        private void txtDireccion_TextChanged(object sender, EventArgs e)
+        {
+            direccionclick++;
+            txtDireccion.ForeColor = Color.Black;
         }
 
         private void txtLocalidad_TextChanged(object sender, EventArgs e)
@@ -404,7 +454,6 @@ namespace Presentacion
         private void txtNombre_KeyDown(object sender, KeyEventArgs e)
         {
             nombreclick++;
-
             if (nombreclick >= 1 && txtNombre.Text == "Nombre(s) y Apellido")
             {
                 txtNombre.Text = "";
@@ -415,12 +464,22 @@ namespace Presentacion
             }
         }
 
-   
+        private void txtDireccion_KeyDown(object sender, KeyEventArgs e)
+        {
+            direccionclick++;
+            if (direccionclick >= 1 && txtDireccion.Text == "Direccion")
+            {
+                txtDireccion.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
 
         private void txtLocalidad_KeyDown(object sender, KeyEventArgs e)
         {
             localidadclick++;
-
             if (localidadclick >= 1 && txtLocalidad.Text == "Localidad")
             {
                 txtLocalidad.Text = "";
@@ -434,7 +493,6 @@ namespace Presentacion
         private void txtCodPostal_KeyDown(object sender, KeyEventArgs e)
         {
             codpostalclick++;
-
             if (codpostalclick >= 1 && txtCodPostal.Text == "Codigo Postal")
             {
                 txtCodPostal.Text = "";
@@ -462,7 +520,6 @@ namespace Presentacion
         private void txtDni_KeyDown(object sender, KeyEventArgs e)
         {
             dniclick++;
-
             if (dniclick >= 1 && txtDni.Text == "DNI (ej. 12345678)")
             {
                 txtDni.Text = "";
@@ -479,6 +536,15 @@ namespace Presentacion
             {
                 txtNombre.Text = "Nombre(s) y Apellido";
                 txtNombre.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtDireccion_Leave(object sender, EventArgs e)
+        {
+            if (txtDireccion.Text == "")
+            {
+                txtDireccion.Text = "Direccion";
+                txtDireccion.ForeColor = Color.DarkGray;
             }
         }
 
@@ -528,6 +594,16 @@ namespace Presentacion
             }
         }
 
+        private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite letras, números, la tecla de retroceso, espacios y algunos signos de puntuación
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar)
+                && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != '-' && e.KeyChar != '/')
+            {
+                e.Handled = true; // Rechaza el carácter
+            }
+        }
+
 
         private void txtLocalidad_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -565,115 +641,6 @@ namespace Presentacion
                 e.Handled = true; // Rechaza el carácter
             }
         }
-
-        private void txtProvincia_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            txtProvincia.ForeColor = Color.Black;
-
-            //quita el molesto highlight del combobox
-            this.ActiveControl = null;
-            //
-        }
-
-        private void txtProvincia_DropDown(object sender, EventArgs e)
-        {
-            txtProvincia.Items.Remove("Provincia");
-
-            txtProvincia.ForeColor = Color.Black;
-        }
-
-        // Método para validar un nombre y apellido (ajusta según tus necesidades)
-        private bool EsNombreValido(string nombre)
-        {
-            // Elimina espacios en blanco al principio y al final
-            nombre = nombre.Trim();
-
-            // Verifica si hay al menos dos palabras separadas por espacio
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, @"^[A-Za-z]+(?:\s[A-Za-z]+)+$");
-        }
-
-        // Método para validar la primera línea de una dirección (ajusta según tus necesidades)
-        private bool EsDireccionValida(string direccion)
-        {
-            if (txtDireccion.Text == "Direccion")
-            {
-                return false;
-            }
-            // Ejemplo: verifica si contiene letras y números (ajusta según tus necesidades)
-            return System.Text.RegularExpressions.Regex.IsMatch(direccion, @"^[A-Za-z0-9\s.,'-]+$");
-        }
-
-        // Aquí debes definir tu método de validación de códigos postales
-        private bool EsCodigoPostalValido(string codPostal)
-        {
-            // Verifica si tiene entre 4 y 6 dígitos
-            return System.Text.RegularExpressions.Regex.IsMatch(codPostal, @"^\d{4,6}$");
-        }
-
-        private void txtDireccion_Click(object sender, EventArgs e)
-        {
-            direccionclick++;
-
-            if (direccionclick >= 1 && txtDireccion.Text == "Direccion")
-            {
-                txtDireccion.Text = "";
-            }
-            else
-            {
-                return;
-            }
-        }
-
-        private void txtDireccion_KeyDown(object sender, KeyEventArgs e)
-        {
-            direccionclick++;
-
-            if (direccionclick >= 1 && txtDireccion.Text == "Direccion")
-            {
-                txtDireccion.Text = "";
-            }
-            else
-            {
-                return;
-            }
-        }
-
-        private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permite letras, números, la tecla de retroceso, espacios y algunos signos de puntuación
-            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar)
-                && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != '-' && e.KeyChar != '/')
-            {
-                e.Handled = true; // Rechaza el carácter
-            }
-        }
-
-        private void txtDireccion_Leave(object sender, EventArgs e)
-        {
-            if (txtDireccion.Text == "")
-            {
-                txtDireccion.Text = "Direccion";
-                txtDireccion.ForeColor = Color.DarkGray;
-            }
-        }
-
-        private void txtDireccion_TextChanged(object sender, EventArgs e)
-        {
-            direccionclick++;
-            txtDireccion.ForeColor = Color.Black;
-        }
-
-        private void PanelBarraTitulo_MouseDown_1(object sender, MouseEventArgs e)
-        {
-           
-        }
-
-        private void txtProvincia_DropDownClosed(object sender, EventArgs e)
-        {
-            FormComprar_Click(sender, e);
-        }
-
-      
     }
 }
 

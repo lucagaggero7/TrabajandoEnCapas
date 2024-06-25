@@ -20,6 +20,8 @@ namespace Entidades
         private int stock;
 
         #endregion
+
+
         #region Constructor
         public Producto()
         {
@@ -32,6 +34,8 @@ namespace Entidades
             stock = 0;
         }
         #endregion
+
+
         #region propiedades/encapsulamiento
 
         public string Nombre

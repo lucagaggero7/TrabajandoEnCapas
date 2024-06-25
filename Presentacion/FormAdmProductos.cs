@@ -37,21 +37,6 @@ namespace Presentacion
         public FormAdmProductos()
         {
             InitializeComponent();
-            //datagridProductos.ColumnCount = 6;
-            //datagridProductos.Columns[0].HeaderText = "Código";
-            //datagridProductos.Columns[1].HeaderText = "Nombre";
-            //datagridProductos.Columns[2].HeaderText = "Marca";
-            //datagridProductos.Columns[3].HeaderText = "Categoria";
-            //datagridProductos.Columns[4].HeaderText = "Precio";
-            //datagridProductos.Columns[5].HeaderText = "Stock";
-
-
-            //datagridProductos.Columns[0].Width = 60;
-            //datagridProductos.Columns[1].Width = 90;
-            //datagridProductos.Columns[2].Width = 90;
-            //datagridProductos.Columns[3].Width = 90;
-            //datagridProductos.Columns[4].Width = 60;
-            //datagridProductos.Columns[5].Width = 60;
             LlenarDataGrid();
         }
 
@@ -62,7 +47,7 @@ namespace Presentacion
 
         private void LlenarDataGrid()
         {
-            datagridProductos.DataSource = objNegProductos.listadoProductos("Todos");
+            datagridProductos.DataSource = objNegProductos.ListadoProductos("Todos");
         }
         private void Limpiar()
         {
@@ -81,7 +66,6 @@ namespace Presentacion
             txtStock_Leave(txtStock, EventArgs.Empty);
 
             FormAdmProductos_Click(this, EventArgs.Empty);
-
         }
 
         private void TxtBox_a_Clase(string accion) //Prepara el objeto a enviar a la capa de Negocio
@@ -99,7 +83,6 @@ namespace Presentacion
                 objEntProducto.Precio = int.Parse(txtPrecio.Text);
                 objEntProducto.Stock = int.Parse(txtStock.Text);
             }
-            
         }
 
         private void Ds_a_TxtBox(DataSet ds)
@@ -116,46 +99,45 @@ namespace Presentacion
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            //Verificamos que el valor sea un valor entero
+            //Verificamos que el codigo sea un valor entero
             if (long.TryParse(txtCodigo.Text, out Verificacion))
-
             {
-                //borro el error 
                 Valorverif = long.Parse(txtCodigo.Text);
+                //borro el error 
                 errorCodigo.Clear();
             }
             else
             {
-                errorCodigo.SetError(txtCodigo, "Ingrese un codigo para cargar");
+                //seteo el error y salgo de la estructura
+                errorCodigo.SetError(txtCodigo, "Ingrese un codigo valido");
                 return;
             }
 
             //Verificamos que el codigo no exista ya en la lista de productos
-
-
             accion = "Buscar o Borrar";
             TxtBox_a_Clase(accion);
             index = objNegProductos.BuscarProducto(objEntProducto).ToString();
-
             foreach (DataGridViewRow Row in datagridProductos.Rows)
             {
                 String strFila = Row.Index.ToString();
                 foreach (DataGridViewCell cell in Row.Cells)
                 {
                     string Valor = Convert.ToString(cell.Value);
-                    if (Valor == index)
+                    if (Valor != index)
                     {
-                        errorCodigo.SetError(txtCodigo, "Este codigo ya esta cargado en el la lista");
-                        return;
+                        //borro el error 
+                        errorCodigo.Clear();
                     }
                     else
                     {
-                        errorCodigo.Clear();
+                        //seteo el error y salgo de la estructura
+                        errorCodigo.SetError(txtCodigo, "Este codigo ya esta cargado en el la lista");
+                        return;
                     }
                 }
             }
 
-            //Verificamos que el nombre no este vacia
+            //Verificamos que el nombre sea valido
             if (txtNombre.Text != "" && txtNombre.Text != "Nombre")
 
             {
@@ -164,47 +146,48 @@ namespace Presentacion
             }
             else
             {
-                errorNombre.SetError(txtNombre, "Ingrese un nombre para cargar");
+                //seteo el error y salgo de la estructura
+                errorNombre.SetError(txtNombre, "Ingrese un nombre valido");
                 return;
             }
 
-            //Verificamos que la marca no este vacia
+            //Verificamos que la marca sea valida
             if (txtMarca.Text != "" && txtMarca.Text != "Marca")
-
             {
                 //borro el error 
                 errorMarca.Clear();
             }
             else
             {
-                errorMarca.SetError(txtMarca, "Ingrese una marca para cargar");
+                //seteo el error y salgo de la estructura
+                errorMarca.SetError(txtMarca, "Ingrese una marca valida");
                 return;
             }
 
-            //Verificamos que la categoria no este vacia
+            //Verificamos que la categoria sea valida
             if (txtCategoria.Text != "" && txtCategoria.Text != "Categoria")
-
             {
                 //borro el error 
                 errorCategoria.Clear();
             }
             else
             {
-                errorCategoria.SetError(txtCategoria, "Ingrese una categoria para cargar");
+                //seteo el error y salgo de la estructura
+                errorCategoria.SetError(txtCategoria, "Ingrese una categoria valida");
                 return;
             }
 
             //Verificamos que el precio sea un valor entero
             if (long.TryParse(txtPrecio.Text, out Verificacion))
-
             {
-                //borro el error 
                 Valorverif = long.Parse(txtPrecio.Text);
+                //borro el error
                 errorPrecio.Clear();
             }
             else
             {
-                errorPrecio.SetError(txtPrecio, "Ingrese un precio para cargar");
+                //seteo el error y salgo de la estructura
+                errorPrecio.SetError(txtPrecio, "Ingrese un precio valido");
                 return;
             }
 
@@ -212,28 +195,30 @@ namespace Presentacion
             if (long.TryParse(txtStock.Text, out Verificacion))
 
             {
-                //borro el error 
                 Valorverif = long.Parse(txtStock.Text);
+                //borro el error 
                 errorStock.Clear();
             }
             else
             {
-                errorStock.SetError(txtStock, "Ingrese un stock para cargar");
+                //seteo el error y salgo de la estructura
+                errorStock.SetError(txtStock, "Ingrese un stock valido");
                 return;
             }
 
 
             int nGrabados = -1;
-            //llamo al método que carga los datos del objeto
             accion = "Cargar";
             TxtBox_a_Clase(accion);
-            nGrabados = objNegProductos.abmProdcutos("Agregar", objEntProducto); //invoco a la capa de negocio
+
+            //llamo al método que agrega los productos a la base de datos
+            nGrabados = objNegProductos.AbmProdcutos("Agregar", objEntProducto); 
                 
-                if (nGrabados == -1)
-                lblMensaje.Text = " No pudo grabar productos en el sistema";
+            if (nGrabados == -1)
+            MessageBox.Show ("No se pudo grabar productos en el sistema");
             else
             {
-                lblMensaje.Text = " Se grabó con éxito productos.";
+                MessageBox.Show("Se grabó con éxito productos");
                 LlenarDataGrid();
                 Limpiar();
             }
@@ -241,59 +226,59 @@ namespace Presentacion
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            //Verificamos que el valor sea un valor entero
+            //Verificamos que el codigo sea un valor entero
             if (long.TryParse(txtCodigo.Text, out Verificacion))
-
             {
-                //borro el error 
                 Valorverif = long.Parse(txtCodigo.Text);
+                //borro el error 
                 errorCodigo.Clear();
             }
             else
             {
+                //seteo el error y salgo de la estructura
                 errorCodigo.SetError(txtCodigo, "Ingrese un codigo para cargar");
                 return;
             }
 
             int nBorrados = -1;
-            //llamo al método que carga los datos del objeto
             accion = "Buscar o Borrar";
             TxtBox_a_Clase(accion);
-            nBorrados = objNegProductos.abmProdcutos("Borrar", objEntProducto); //invoco a la capa de negocio
+
+            //llamo al método que borra el producto de la base ded datos
+            nBorrados = objNegProductos.AbmProdcutos("Borrar", objEntProducto);
 
             if (nBorrados > 0)
             {
-                lblMensaje.Text = " Se borro con éxito productos.";
+                MessageBox.Show("Se borro con éxito productos");
                 LlenarDataGrid();
                 Limpiar();
             }
             else
             {
-                lblMensaje.Text = " El codigo que ingreso no existe";
+                MessageBox.Show("El codigo que ingreso no existe");
             }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            //Verificamos que el valor sea un valor entero
+            //Verificamos que el codigo sea un valor entero
             if (long.TryParse(txtCodigo.Text, out Verificacion))
-
             {
-                //borro el error 
                 Valorverif = long.Parse(txtCodigo.Text);
+                //borro el error 
                 errorCodigo.Clear();
             }
             else
             {
+                //seteo el error y salgo de la estructura
                 errorCodigo.SetError(txtCodigo, "Ingrese un codigo para buscar");
                 return;
             }
 
-
             accion = "Buscar o Borrar";
             TxtBox_a_Clase(accion);
-            index = objNegProductos.BuscarProducto(objEntProducto).ToString();
 
+            index = objNegProductos.BuscarProducto(objEntProducto).ToString();
             foreach (DataGridViewRow Row in datagridProductos.Rows)
             {
                 String strFila = Row.Index.ToString();
@@ -303,16 +288,14 @@ namespace Presentacion
                     if (Valor == index)
                     {
                         datagridProductos.Rows[Convert.ToInt32(strFila)].Selected = true;
-                        lblMensaje.Text = " Si existe en el sistema";
                         return;
                     }
                     else
                     {
-                        lblMensaje.Text = " No existe en el sistema";
+                        MessageBox.Show("El codigo buscado no existe");
                         datagridProductos.ClearSelection();
                     }
                 }
-
             }
         }
 
@@ -320,6 +303,28 @@ namespace Presentacion
         {
             this.Hide(); // Oculta el formulario actual
             Owner.Show(); // Muestra el formulario padre
+        }
+
+        private void FormAdmProductos_Click(object sender, EventArgs e)
+        {
+            lblTitulo.Focus();
+            datagridProductos.ClearSelection();
+        }
+
+        private void panelCarga_Click(object sender, EventArgs e)
+        {
+            lblTitulo.Focus();
+            datagridProductos.ClearSelection();
+        }
+
+        private void PanelBarraTitulo_Click(object sender, EventArgs e)
+        {
+            datagridProductos.ClearSelection();
+        }
+
+        private void PanelBarraTitulo_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            FormAdmProductos_Click(sender, e);
         }
 
         private void txtCodigo_Click(object sender, EventArgs e)
@@ -651,28 +656,6 @@ namespace Presentacion
         {
             stockclick++;
             txtStock.ForeColor = Color.Black;
-        }
-
-        private void FormAdmProductos_Click(object sender, EventArgs e)
-        {
-            lblCarga.Focus();
-            datagridProductos.ClearSelection();
-        }
-
-        private void panelCarga_Click(object sender, EventArgs e)
-        {
-            lblCarga.Focus();
-            datagridProductos.ClearSelection();
-        }
-
-        private void PanelBarraTitulo_Click(object sender, EventArgs e)
-        {
-            datagridProductos.ClearSelection();
-        }
-
-        private void PanelBarraTitulo_MouseDown_1(object sender, MouseEventArgs e)
-        {
-            FormAdmProductos_Click(sender, e);
         }
     }
 }

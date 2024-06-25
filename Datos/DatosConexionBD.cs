@@ -14,8 +14,6 @@ namespace Datos
 
         public string cadenaConexion = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Bases de Datos\TiendaOnlineBD.accdb;Persist Security Info=True";
 
-
-
         public DatosConexionBD()
         {
             conexion = new OleDbConnection(cadenaConexion);

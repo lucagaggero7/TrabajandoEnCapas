@@ -27,6 +27,7 @@ namespace Presentacion
             // Oculta la columna "codigo"
             datagridCarrito.Columns["codigo"].Visible = false;
 
+            // Calula el total
             decimal total = carrito.Productos.AsEnumerable().Sum(x => Convert.ToDecimal(x["Precio"]));
             lblTotal.Text = "EL TOTAL ES: " + total.ToString("C2");
 
@@ -36,21 +37,14 @@ namespace Presentacion
 
             if (datagridCarrito.Rows.Count == 0)
             {
-                // El DataGridView está vacío
+                // El Carrito está vacío
                 btnFinalizar.Visible = false;
             }
             else
             {
-                // El DataGridView tiene al menos una fila
+                // El Carrito tiene al menos un producto
                 btnFinalizar.Visible = true;
             }
-        }
-
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            this.Hide(); // Oculta el formulario actual
-            Owner.Hide(); // Oculta el formulario padre
-            Owner.Owner.Show(); // Muestra el formulario padre del padre
         }
 
         private void btnAgregarMas_Click(object sender, EventArgs e)
@@ -58,7 +52,6 @@ namespace Presentacion
             datagridCarrito.ClearSelection();
             this.Hide(); // Oculta el formulario actual
             Owner.Show(); // Muestra el formulario padre
-            //((FormUsuarioBasic)Owner).datagridProductosUser.ClearSelection();
         }
 
         private void FormCarrito_Click(object sender, EventArgs e)
@@ -81,9 +74,12 @@ namespace Presentacion
                 datagridCarrito.DataSource = carrito.Productos;
                 datagridCarrito.ClearSelection();
             }
+
+            // Actualiza el valor total
             decimal total = carrito.Productos.AsEnumerable().Sum(x => Convert.ToDecimal(x["Precio"]));
             lblTotal.Text = "EL TOTAL ES: " + total.ToString("C2");
 
+            // Actualiza los botones
             if (datagridCarrito.Rows.Count == 0)
             {
                 btnFinalizar.Visible = false; 
@@ -104,11 +100,9 @@ namespace Presentacion
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            FormComprar frm5 = new FormComprar();
-            frm5.Owner = this;
-            frm5.Show(this); // Esto establece FormUsuarioBasic como el propietario de FormCarrito
-            
-
+            FormComprar frm6 = new FormComprar();
+            this.AddOwnedForm(frm6);
+            frm6.Show();
             this.Hide();
         }
 

@@ -36,11 +36,6 @@ namespace Presentacion
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnMaximizar_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         //Este conjunto de metodos y variables permiten arrastrar el formulario
         // debido a que la title bar original fue borrada y remplazada por una custom
         //
@@ -56,11 +51,7 @@ namespace Presentacion
 
         private void FrmBase_Load(object sender, EventArgs e)
         {
-
         }
-
-        
         //
-
     }
 }

@@ -19,6 +19,4 @@ public class Carrito
     {
         Productos = tablaExistente.Clone();
     }
-
-
 }

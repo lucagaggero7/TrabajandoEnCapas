@@ -20,7 +20,6 @@ namespace Entidades
         private long telefono;
         private int dni;
         
-
         #endregion
 
 
@@ -83,7 +82,6 @@ namespace Entidades
             get { return dni; }
             set { dni = value; }
         }
-
 
         #endregion
     }

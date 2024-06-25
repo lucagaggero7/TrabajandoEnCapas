@@ -37,7 +37,6 @@ namespace Presentacion
             this.btnCargar = new System.Windows.Forms.Button();
             this.datagridProductos = new System.Windows.Forms.DataGridView();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.lblMensaje = new System.Windows.Forms.Label();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtStock = new System.Windows.Forms.TextBox();
@@ -52,7 +51,7 @@ namespace Presentacion
             this.errorPrecio = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorStock = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelCarga = new System.Windows.Forms.Panel();
-            this.lblCarga = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.PanelBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorCodigo)).BeginInit();
@@ -171,14 +170,6 @@ namespace Presentacion
             this.txtNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyDown);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
-            // 
-            // lblMensaje
-            // 
-            this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Location = new System.Drawing.Point(98, 377);
-            this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(0, 13);
-            this.lblMensaje.TabIndex = 7;
             // 
             // btnBorrar
             // 
@@ -304,7 +295,7 @@ namespace Presentacion
             // 
             this.panelCarga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(25)))), ((int)(((byte)(67)))));
             this.panelCarga.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelCarga.Controls.Add(this.lblCarga);
+            this.panelCarga.Controls.Add(this.lblTitulo);
             this.panelCarga.Controls.Add(this.txtCodigo);
             this.panelCarga.Controls.Add(this.txtNombre);
             this.panelCarga.Controls.Add(this.txtMarca);
@@ -317,16 +308,16 @@ namespace Presentacion
             this.panelCarga.TabIndex = 54;
             this.panelCarga.Click += new System.EventHandler(this.panelCarga_Click);
             // 
-            // lblCarga
+            // lblTitulo
             // 
-            this.lblCarga.AutoSize = true;
-            this.lblCarga.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCarga.ForeColor = System.Drawing.Color.White;
-            this.lblCarga.Location = new System.Drawing.Point(13, 0);
-            this.lblCarga.Name = "lblCarga";
-            this.lblCarga.Size = new System.Drawing.Size(231, 35);
-            this.lblCarga.TabIndex = 64;
-            this.lblCarga.Text = "GESTIÓN DE PRODUCTOS";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(13, 0);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(231, 35);
+            this.lblTitulo.TabIndex = 64;
+            this.lblTitulo.Text = "GESTIÓN DE PRODUCTOS";
             // 
             // FormAdmProductos
             // 
@@ -338,7 +329,6 @@ namespace Presentacion
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panelCarga);
             this.Controls.Add(this.btnCerrarSesion);
-            this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.datagridProductos);
             this.Name = "FormAdmProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -346,7 +336,6 @@ namespace Presentacion
             this.Load += new System.EventHandler(this.FormAdmProductos_Load);
             this.Click += new System.EventHandler(this.FormAdmProductos_Click);
             this.Controls.SetChildIndex(this.datagridProductos, 0);
-            this.Controls.SetChildIndex(this.lblMensaje, 0);
             this.Controls.SetChildIndex(this.PanelBarraTitulo, 0);
             this.Controls.SetChildIndex(this.btnCerrarSesion, 0);
             this.Controls.SetChildIndex(this.panelCarga, 0);
@@ -364,7 +353,6 @@ namespace Presentacion
             this.panelCarga.ResumeLayout(false);
             this.panelCarga.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -374,7 +362,6 @@ namespace Presentacion
         private System.Windows.Forms.Button btnCargar;
         private System.Windows.Forms.DataGridView datagridProductos;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtStock;
@@ -389,6 +376,6 @@ namespace Presentacion
         private ErrorProvider errorPrecio;
         private ErrorProvider errorStock;
         private Panel panelCarga;
-        private Label lblCarga;
+        private Label lblTitulo;
     }
 }

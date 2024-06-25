@@ -13,22 +13,20 @@ namespace Datos
 {
     public class DatosProductos : DatosConexionBD
     {
-        public int abmProductos(string accion, Producto objProfesional)
+        public int AbmProductos(string accion, Producto objProducto)
         {
             int resultado;
             string orden = string.Empty;
 
             if (accion == "Agregar")
-                //orden = "insert into Productos values (" + objProfesional.CodigoProd + ",'" + objProfesional.Nombre + "');";
                 orden = "insert into Productos (Codigo, Nombre, Marca, Categoria, Precio, Stock) " +
-                    "values (" + objProfesional.CodigoProd + ",'" + objProfesional.Nombre + "','" +
-                                 objProfesional.Marca + "','" + objProfesional.Categoria + "','" +
-                                 objProfesional.Precio + "','" + objProfesional.Stock + "');";
+                    "values (" + objProducto.CodigoProd + ",'" + objProducto.Nombre + "','" +
+                                 objProducto.Marca + "','" + objProducto.Categoria + "','" +
+                                 objProducto.Precio + "','" + objProducto.Stock + "');";
 
             if (accion == "Borrar")
-                orden = "DELETE FROM Productos WHERE Codigo = " + objProfesional.CodigoProd + ";";
+                orden = "DELETE FROM Productos WHERE Codigo = " + objProducto.CodigoProd + ";";
 
-            // falta la orden de borrar
             OleDbCommand cmd = new OleDbCommand(orden, conexion);
 
             try
@@ -48,20 +46,14 @@ namespace Datos
             return resultado;
         }
 
-        ////con esta query solamente podemos saber si existe o no el registro
-        //    if (accion == "Buscar")
-        //        orden = "Select * FROM Productos WHERE Codigo = " + objProfesional.CodigoProd + ";";
-
-        public object BuscarProducto(Producto objProfesional)
+        public int BuscarProducto(Producto objProfesional)
         {
             object CodObtenido;
             int CodInt;
 
-
             string orden = "SELECT Codigo FROM Productos WHERE Codigo = @Codigo";
             OleDbCommand cmd = new OleDbCommand(orden, conexion);
             cmd.Parameters.AddWithValue("@Codigo", objProfesional.CodigoProd);
-
 
             try
             {
@@ -84,7 +76,7 @@ namespace Datos
         }
 
 
-        public DataTable listadoProductos(string cual)
+        public DataTable ListadoProductos(string cual)
         {
             string orden = string.Empty;
             if (cual != "Todos")
@@ -113,14 +105,12 @@ namespace Datos
             return dt;
         }
 
-
         public DataTable BuscarFiltros()
         {
             DataTable dataTableFiltro = new DataTable();
             string orden = string.Empty;
 
             orden = "SELECT p.Categoria, p.Marca, p.Precio\r\nFROM Productos AS p\r\nINNER JOIN (\r\n    SELECT DISTINCT Categoria, Marca, Precio\r\n    FROM Productos\r\n) AS subconsulta\r\nON p.Categoria = subconsulta.Categoria\r\n    AND p.Marca = subconsulta.Marca\r\n    AND p.Precio = subconsulta.Precio;";
-
 
             OleDbCommand cmd = new OleDbCommand(orden, conexion);
             OleDbDataAdapter da = new OleDbDataAdapter();
@@ -147,7 +137,6 @@ namespace Datos
             }
 
             return dataTableFiltro;
-            
         }
 
     }

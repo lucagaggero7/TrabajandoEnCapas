@@ -38,10 +38,10 @@ namespace Presentacion
 
         private void btnNoAcc_Click(object sender, EventArgs e)
         {
-            FormUsuarioBasic frm3 = new FormUsuarioBasic();
-            this.AddOwnedForm(frm3);
+            FormUsuarioBasic frm4 = new FormUsuarioBasic();
+            this.AddOwnedForm(frm4);
 
-            frm3.Show();
+            frm4.Show();
             this.Hide();
         }
     }

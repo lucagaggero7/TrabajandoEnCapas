@@ -13,17 +13,14 @@ namespace Negocios
     {
         DatosProductos objDatosProductos = new DatosProductos();
 
-        DatosUsuarios objDatosUsuarios = new DatosUsuarios();
-
-        public int abmProdcutos(string accion, Producto objProducto)
+        public int AbmProdcutos(string accion, Producto objProducto)
         {
-            return objDatosProductos.abmProductos(accion, objProducto);
+            return objDatosProductos.AbmProductos(accion, objProducto);
         }
-        public DataTable listadoProductos(string cual)
+        public DataTable ListadoProductos(string cual)
         {
-            return objDatosProductos.listadoProductos(cual);
+            return objDatosProductos.ListadoProductos(cual);
         }
-
 
         public object BuscarProducto(Producto objProducto)
         {
@@ -34,16 +31,5 @@ namespace Negocios
         {
             return objDatosProductos.BuscarFiltros();
         }
-
-        public int Compra(string accion, Usuario objUsuario, string listaProuductos)
-        {
-            return objDatosUsuarios.Compra(accion, objUsuario, listaProuductos);
-        }
-
-
     }
-
-
-
-
 }
