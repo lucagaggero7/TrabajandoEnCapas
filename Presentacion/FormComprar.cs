@@ -252,6 +252,7 @@ namespace Presentacion
                 TxtBox_a_Clase(accion);
 
                 int nComprados = -1;
+
                 // Diccionario para rastrear las repeticiones
                 Dictionary<string, int> repetitions = new Dictionary<string, int>();
 
@@ -269,11 +270,23 @@ namespace Presentacion
                     }
                 }
 
-                // Construye el string de salida con el número de repeticiones
-                string listaProductos = string.Join(", ", repetitions.Select(kv => $"{kv.Key} {kv.Value}"));
+                // Construye el string de salida con repeticiones
+                List<string> listaProductosRepetidos = new List<string>();
+                foreach (var kvp in repetitions)
+                {
+                    string producto = kvp.Key;
+                    int cantidad = kvp.Value;
+                    for (int i = 0; i < cantidad; i++)
+                    {
+                        listaProductosRepetidos.Add(producto);
+                    }
+                }
 
-                //Ejecuta el metodo que carga los datos de compra en la base de datos
-                nComprados = objNegUsuarios.Compra("Comprar", objEntUsuario, listaProductos); 
+                // Convierte la lista de productos repetidos en un solo string
+                string listaProductos = string.Join(", ", listaProductosRepetidos);
+
+                // Ejecuta el método que carga los datos de compra en la base de datos
+                nComprados = objNegUsuarios.Compra("Comprar", objEntUsuario, listaProductos);
             }
         }
         private void btnCancelar_Click(object sender, EventArgs e)
